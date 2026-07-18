@@ -59,15 +59,149 @@ nav a:hover { color:var(--magenta); }
 .contact { background:var(--noir); color:#fff; max-width:none; text-align:center; }
 .contact p { color:#bbb; max-width:54ch; margin:14px auto 34px; }
 footer { background:#000; color:#777; font-size:13px; padding:26px 6vw; display:flex; justify-content:space-between; flex-wrap:gap; }
+/* ===== EMPLACEMENTS VISUELS =====
+   Chaque .ph est un emplacement photo. Pour le remplir :
+   1. déposer l'image dans img/  2. ajouter <img src="img/nom.jpg" alt="...">
+   3. ajouter la classe "filled" sur le .ph. Le gabarit disparait tout seul. */
+.ph { position:relative; background:#111; overflow:hidden; display:flex; align-items:flex-end; }
+.ph::before { content:""; position:absolute; inset:0; background:repeating-linear-gradient(115deg, var(--magenta) 0 14px, transparent 14px 34px); opacity:.16; }
+.ph::after { content:attr(data-ph); position:relative; z-index:2; padding:16px; color:#fff; font-size:11px; line-height:1.4; letter-spacing:2px; text-transform:uppercase; font-weight:600; opacity:.7; }
+.ph img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1; }
+.ph.filled::before, .ph.filled::after { display:none; }
+/* HERO IMAGE */
+.hero { min-height:84vh; display:flex; align-items:center; }
+.hero-media { position:absolute; inset:0; z-index:0; }
+.hero-media::after { content:""; position:absolute; inset:0; z-index:3; background:linear-gradient(100deg, rgba(10,10,10,.94) 0%, rgba(10,10,10,.78) 42%, rgba(10,10,10,.30) 100%); }
+.hero-media .ph { position:absolute; inset:0; align-items:flex-end; justify-content:flex-end; }
+.hero-media .ph::after { max-width:34ch; text-align:right; }
+.hero-inner { z-index:4; }
+.scroll-hint { position:absolute; bottom:28px; left:6vw; z-index:4; color:#888; font-size:11px; letter-spacing:3px; text-transform:uppercase; }
+/* BANDE LOGOS */
+.logos { background:#fff; border-bottom:1px solid #eee; padding:26px 6vw; }
+.logos-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:center; gap:5vw; flex-wrap:wrap; }
+.logos .slot { width:120px; height:44px; border:1px dashed #ddd; display:flex; align-items:center; justify-content:center; color:#bbb; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; }
+.logos .slot img { max-width:100%; max-height:100%; object-fit:contain; filter:grayscale(1); opacity:.65; }
+/* SERVICES EN TRIPTYQUE VISUEL */
+.moments { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-top:44px; }
+.moments .ph { aspect-ratio:4/5; }
+.moments h3 { font-size:17px; margin:18px 0 8px; }
+.moments p { color:var(--gris); font-size:15px; }
+.moments .step { color:var(--magenta); font-size:12px; letter-spacing:2px; font-style:normal; font-weight:600; }
+/* GALERIE TERRAIN */
+.terrain { background:var(--noir); color:#fff; max-width:none; }
+.terrain-inner { max-width:1200px; margin:0 auto; }
+.terrain h2, .terrain .kicker { color:#fff; }
+.terrain .kicker { color:var(--magenta); }
+.terrain .intro { color:#bbb; max-width:58ch; margin-bottom:40px; }
+.gallery { display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:170px; gap:14px; }
+.gallery .ph { height:100%; }
+.gallery .w2 { grid-column:span 2; }
+.gallery .h2 { grid-row:span 2; }
+/* CASES AVEC PHOTO */
+.case .visual { height:auto; aspect-ratio:16/10; position:relative; align-items:flex-end; }
+.case .visual .label { position:absolute; z-index:3; left:0; top:0; padding:14px 18px; font-style:italic; font-weight:900; font-size:20px; text-transform:uppercase; color:#fff; text-shadow:0 2px 12px rgba(0,0,0,.6); }
+/* CITATION */
+.quote { background:#f7f7f7; max-width:none; }
+.quote-inner { max-width:900px; margin:0 auto; display:grid; grid-template-columns:180px 1fr; gap:40px; align-items:center; }
+.quote .ph { aspect-ratio:1; border-radius:50%; }
+.quote blockquote { font-style:italic; font-weight:800; font-size:clamp(20px,2.4vw,30px); line-height:1.35; text-transform:none; }
+.quote cite { display:block; margin-top:18px; font-style:normal; font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--gris); }
+/* ABOUT : vraie photo */
+.about .portrait { padding:0; min-height:0; aspect-ratio:4/5; }
+/* ===== JUICE : ANIMATIONS ===== */
+/* Chrono de course : progression de lecture en haut de page */
+.progress { position:fixed; top:0; left:0; height:3px; width:0%; background:var(--magenta); z-index:60; box-shadow:0 0 12px rgba(197,34,112,.7); }
+/* Entree en scene au defilement */
+.reveal { opacity:0; transform:translateY(28px); transition:opacity .75s cubic-bezier(.16,.8,.3,1), transform .75s cubic-bezier(.16,.8,.3,1); }
+.reveal.seen { opacity:1; transform:none; }
+/* Boutons : balayage diagonal, comme un maillot qui passe */
+.btn { position:relative; overflow:hidden; z-index:0; transition:color .35s; }
+.btn::before { content:""; position:absolute; inset:-2px; background:#fff; transform:skewX(-14deg) translateX(-120%); transition:transform .45s cubic-bezier(.16,.8,.3,1); z-index:-1; }
+.btn:hover::before, .btn:focus-visible::before { transform:skewX(-14deg) translateX(0); }
+.btn:hover, .btn:focus-visible { color:var(--noir); background:var(--magenta); }
+.btn.ghost:hover, .btn.ghost:focus-visible { color:var(--noir); }
+/* Navigation : soulignement qui file */
+nav ul a { position:relative; padding-bottom:3px; }
+nav ul a::after { content:""; position:absolute; left:0; bottom:0; width:100%; height:2px; background:var(--magenta); transform:scaleX(0); transform-origin:right; transition:transform .32s cubic-bezier(.16,.8,.3,1); }
+nav ul a:hover::after, nav ul a:focus-visible::after { transform:scaleX(1); transform-origin:left; }
+/* Cartes services */
+.card { transition:transform .38s cubic-bezier(.16,.8,.3,1), box-shadow .38s, border-top-color .38s; }
+.card:hover { transform:translateY(-6px); box-shadow:0 16px 38px rgba(0,0,0,.08); }
+/* Collaborations : la photo respire, le nom avance */
+.case { transition:transform .4s cubic-bezier(.16,.8,.3,1), box-shadow .4s; }
+.case:hover { transform:translateY(-7px); box-shadow:0 18px 44px rgba(0,0,0,.13); }
+.case .visual img, .case .visual::before { transition:transform .65s cubic-bezier(.16,.8,.3,1); }
+.case:hover .visual img, .case:hover .visual::before { transform:scale(1.07); }
+.case .visual .label { transition:transform .4s cubic-bezier(.16,.8,.3,1); }
+.case:hover .visual .label { transform:translateX(7px); }
+/* Galerie terrain */
+.gallery .ph { transition:transform .42s cubic-bezier(.16,.8,.3,1), box-shadow .42s; }
+.gallery .ph:hover { transform:scale(1.025); z-index:3; box-shadow:0 18px 44px rgba(0,0,0,.5); }
+.gallery .ph img { transition:transform .75s cubic-bezier(.16,.8,.3,1); }
+.gallery .ph:hover img { transform:scale(1.09); }
+/* Triptyque */
+.moments > div .ph { transition:transform .42s cubic-bezier(.16,.8,.3,1); }
+.moments > div:hover .ph { transform:translateY(-8px); }
+/* Chiffres cles */
+.stats div { transition:transform .32s cubic-bezier(.16,.8,.3,1); }
+.stats div:hover { transform:translateY(-5px); }
+.stats b { font-variant-numeric:tabular-nums; }
+/* Les rayures des gabarits derivent lentement, comme un peloton qui passe */
+@keyframes derive { from { background-position:0 0; } to { background-position:136px 0; } }
+.ph::before { animation:derive 11s linear infinite; }
+.hero-media .ph::before { animation-duration:26s; }
+/* Indice de defilement qui pulse */
+@keyframes respire { 0%,100% { opacity:.35; transform:translateY(0); } 50% { opacity:1; transform:translateY(5px); } }
+.scroll-hint { animation:respire 2.4s ease-in-out infinite; }
+/* Ledboard : le logo entre avec un temps de retard sur le texte */
+.led-slide .led-logo { transform:translateY(10px); opacity:0; transition:opacity .5s .12s, transform .5s .12s; }
+.led-slide.is-active .led-logo { transform:none; opacity:1; }
+/* Respect du reglage systeme : on coupe tout */
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  .reveal { opacity:1; transform:none; transition:none; }
+  .ph::before, .scroll-hint { animation:none; }
+  .btn::before, .case, .card, .gallery .ph, .moments > div .ph, .stats div, .led-slide .led-logo { transition:none; }
+  .progress { display:none; }
+}
+/* ===== LEDBOARD PARTENAIRES TERRAIN ===== */
+.ledboard-wrap { background:var(--noir); max-width:none; padding:74px 6vw; }
+.ledboard-inner { max-width:1200px; margin:0 auto; }
+.led-head { margin-bottom:24px; }
+.led-head h2 { color:#fff; }
+.led-head p { color:#999; max-width:60ch; margin-top:8px; }
+.ledboard { position:relative; background:#050505; border:1px solid #1d1d1d; overflow:hidden; box-shadow:0 0 0 7px #0d0d0d, 0 20px 60px rgba(197,34,112,.16); }
+.ledboard::after { content:""; position:absolute; inset:0; pointer-events:none; z-index:5; background-image:radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px); background-size:4px 4px; }
+.led-viewport { position:relative; height:235px; }
+.led-slide { position:absolute; inset:0; display:grid; grid-template-columns:220px 1fr; align-items:center; gap:38px; padding:28px 40px; opacity:0; transform:translateX(42px); transition:opacity .55s ease, transform .55s ease; pointer-events:none; }
+.led-slide.is-active { opacity:1; transform:none; pointer-events:auto; }
+.led-logo { height:86px; display:flex; align-items:center; justify-content:center; text-align:center; padding:8px; border:1px dashed #333; color:#5e5e5e; font-size:10px; letter-spacing:2px; text-transform:uppercase; line-height:1.5; }
+.led-logo img { max-width:100%; max-height:100%; object-fit:contain; }
+.led-cat { color:var(--magenta); font-size:11px; letter-spacing:3px; text-transform:uppercase; font-weight:600; font-style:normal; }
+.led-txt h3 { font-size:clamp(19px,2.5vw,29px); color:#fff; margin:7px 0; }
+.led-txt p { color:#a8a8a8; font-size:15px; max-width:58ch; }
+.led-dots { display:flex; gap:7px; justify-content:center; padding:0 0 20px; }
+.led-dots button { width:28px; height:4px; padding:0; border:0; background:#303030; cursor:pointer; transition:background .3s; }
+.led-dots button[aria-current="true"] { background:var(--magenta); }
+.led-dots button:hover { background:#5a5a5a; }
+@media (max-width:900px) {
+  .led-viewport { height:340px; }
+  .led-slide { grid-template-columns:1fr; gap:20px; padding:26px 24px; align-content:center; }
+  .led-logo { height:66px; justify-content:flex-start; }
+}
+@media (prefers-reduced-motion:reduce) { .led-slide { transition:none; } }
+@media (max-width:900px) { .moments { grid-template-columns:1fr; } .moments .ph { aspect-ratio:16/10; } .about .portrait { aspect-ratio:16/10; } .gallery { grid-template-columns:repeat(2,1fr); grid-auto-rows:130px; } .quote-inner { grid-template-columns:1fr; text-align:center; } .quote .ph { width:150px; margin:0 auto; } .hero-media .ph::after { display:none; } }
 @media (max-width:800px) { .about { grid-template-columns:1fr; } nav ul { display:none; } }
 </style>
 </head>
 <body>
+<div class="progress" id="progress" aria-hidden="true"></div>
 
 <nav>
   <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iQ2FscXVlXzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNTI4LjUgMTUwIj4KICA8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMzAuNi4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogMi4xLjQgQnVpbGQgMTA5KSAgLS0+CiAgPGRlZnM+CiAgICA8c3R5bGU+CiAgICAgIC5zdDAgewogICAgICAgIGZpbGw6ICNmZmY7CiAgICAgIH0KCiAgICAgIC5zdDEgewogICAgICAgIGZpbGw6ICNjNTIyNzA7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnPgogICAgPHBhdGggY2xhc3M9InN0MSIgZD0iTTMxMS4yLDMzLjNjMS4xLDAsMi4xLjIsMy4xLjcsMSwuNSwxLjgsMS4xLDIuNCwxLjkuNy44LDEuMSwxLjcsMS40LDIuNy4zLDEsLjMsMi4xLDAsMy4ybC01LjcsMjguN2MtLjMsMS43LTEuMiwzLjEtMi41LDQuMi0xLjMsMS4xLTIuOSwxLjYtNC42LDEuNmgtMzEuMmMtMS4xLDAtMi4yLS4yLTMuMi0uNy0xLS41LTEuOC0xLjEtMi40LTEuOS0uNi0uOC0xLjEtMS43LTEuNC0yLjgtLjMtMS0uMy0yLjEtLjEtMy4ybDUuOC0yOC43Yy4zLTEuNywxLjEtMy4xLDIuNS00LjIsMS4zLTEuMSwyLjgtMS42LDQuNS0xLjZoMzEuM1pNMjc3LjMsNDMuM2w3LjIsMi4yLTMuOCwxOS4xYzAsLjUsMCwuOS4zLDEuMi4zLjMuNy41LDEuMS41aDI1LjlsLTcuMS0yLjIsMy44LTE5LjFjMC0uNSwwLS44LS4zLTEuMi0uMy0uMy0uNy0uNS0xLjEtLjVoLTI1LjlaIi8+CiAgICA8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMzQ4LjksNjQuMWgtMTUuN2wtMi41LDEyLjJoLTEyLjlsOC42LTQzaDQxLjRjMS4xLDAsMi4yLjIsMy4yLjcsMSwuNSwxLjgsMS4xLDIuNCwxLjkuNi44LDEuMSwxLjcsMS40LDIuNy4zLDEsLjMsMi4xLjEsMy4ybC0zLjMsMTYuNWMtLjMsMS43LTEuMSwzLjEtMi41LDQuMi0xLjMsMS4xLTIuOCwxLjYtNC42LDEuNmgtMi44bDUuNSwxMi4yaC0xMi45bC01LjUtMTIuMlpNMzU4LjMsNTRjLjMsMCwuNi0uMS45LS4zLjMtLjIuNC0uNS41LS44bDEuNS03LjljMC0uNSwwLS44LS4zLTEuMi0uMy0uMy0uNi0uNS0xLjEtLjVoLTMwLjJsNy4xLDIuMi0xLjcsOC42aDIzLjJaIi8+CiAgICA8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMzc4LjYsMzMuM2g0My45bC0yLDEwaC0yMS45bDcuMiwyLjItNi4yLDMwLjloLTE0LjNsNi42LTMzaC0xNS4ybDItMTBaIi8+CiAgICA8cGF0aCBjbGFzcz0ic3QxIiBkPSJNNDE5LjksNjYuOGwuNy0zLjRoMTIuOWwtLjIsMS4yYzAsLjUsMCwuOS4zLDEuMi4zLjMuNy41LDEuMS41aDI0LjJsLTcuMi0yLjIuNy0zLjNjMC0uNSwwLS45LS4zLTEuMi0uMy0uMy0uNy0uNS0xLjEtLjVoLTE5LjljLTEuMiwwLTIuNC0uMy0zLjQtLjgtMS4xLS41LTEuOS0xLjItMi42LTIuMS0uNy0uOS0xLjItMS45LTEuNS0zcy0uMy0yLjMsMC0zLjZsMi0xMGMuNC0xLjgsMS4zLTMuNCwyLjctNC41LDEuNS0xLjIsMy4xLTEuOCw1LTEuOGgyOC40YzEuMiwwLDIuNC4zLDMuNC44LDEuMS41LDEuOSwxLjIsMi42LDIuMXMxLjIsMS45LDEuNSwzYy4zLDEuMS40LDIuMy4xLDMuNWwtLjcsMy41aC0xMi45bC4yLTEuMmMwLS41LDAtLjgtLjMtMS4yLS4zLS4zLS43LS41LTEuMS0uNWgtMTcuMWwtLjMsMi4yLS41LDIuNmMwLC41LDAsLjkuMywxLjIuMy4zLjcuNSwxLjEuNWgyMC41YzEuMi4xLDIuMy41LDMuMiwxLDEsLjYsMS44LDEuMywyLjQsMi4xLjcuOSwxLjEsMS44LDEuNCwyLjkuMywxLjEuMywyLjIsMCwzLjRsLTIuMiwxMC44Yy0uNCwxLjgtMS4zLDMuNC0yLjcsNC41LTEuNSwxLjItMy4xLDEuOC01LDEuOGgtMjguMWMtMS4yLDAtMi40LS4zLTMuNC0uOC0xLjEtLjUtMS45LTEuMi0yLjYtMi4xLS43LS45LTEuMi0xLjktMS41LTMtLjMtMS4xLS4zLTIuMywwLTMuNloiLz4KICAgIDxwYXRoIGQ9Ik0yMDIsMTMwLjJoLTEyLjJsLTcuOS0zNC40aC03LjZsNy4xLDIuMi02LjcsMzIuM2gtMTMuM2w4LjYtNDNoMjMuM2w0LjcsMjYuNiwxMy4zLTI2LjZoMjQuN2wtOC42LDQzaC0xMy4ybDYuNS0zNC40LTE4LjcsMzQuNFoiLz4KICAgIDxwYXRoIGQ9Ik0yNTAuOSwxMThsLTIuNSwxMi4yaC0xMi45bDcuNC0zNy4zYy4zLTEuNywxLjItMy4xLDIuNS00LjIsMS4zLTEuMSwyLjktMS42LDQuNi0xLjZoMjkuOGMxLjEsMCwyLjIuMiwzLjIuNywxLC41LDEuOCwxLjEsMi40LDEuOS42LjgsMS4xLDEuNywxLjQsMi43LjMsMSwuMywyLjEsMCwzLjJsLTYuOSwzNC41aC0xMi45bDIuNS0xMi4yaC0xOC42Wk0yNzEuNiwxMDcuOWwxLjgtOWMwLS41LDAtLjgtLjMtMS4yLS4zLS4zLS43LS41LTEuMS0uNWgtMjQuNWw3LjEsMi4yLTEuNyw4LjZoMTguN1oiLz4KICAgIDxwYXRoIGQ9Ik0yOTAuNiw4Ny4xaDQzLjlsLTIsMTBoLTIxLjlsNy4yLDIuMi02LjIsMzAuOWgtMTQuM2w2LjYtMzNoLTE1LjJsMi0xMFoiLz4KICAgIDxwYXRoIGQ9Ik0zMzYsODcuMWg0My45bC0yLDEwaC0yMS45bDcuMiwyLjItNi4yLDMwLjloLTE0LjNsNi42LTMzaC0xNS4ybDItMTBaIi8+CiAgICA8cGF0aCBkPSJNMzg3LjQsOTcuMmw3LjIsMi4yLS45LDQuN2gyM2wtMS44LDkuM2gtMjMuMWwtMSw1LjFjMCwuNSwwLC45LjMsMS4yLjMuMy43LjUsMS4xLjVoMjUuNWwtMiwxMGgtMzEuNGMtMS4xLDAtMi4yLS4yLTMuMi0uNy0xLS41LTEuOC0xLjEtMi40LTEuOS0uNi0uOC0xLjEtMS43LTEuNC0yLjgtLjMtMS0uMy0yLjEtLjEtMy4ybDYuOS0zNC40aDQwLjJsLTIsMTBoLTM0LjlaIi8+CiAgICA8cGF0aCBkPSJNNDUzLjMsMTE4aC0xNS43bC0yLjUsMTIuMmgtMTIuOWw4LjYtNDNoNDEuNGMxLjEsMCwyLjIuMiwzLjIuNywxLC41LDEuOCwxLjEsMi40LDEuOS42LjgsMS4xLDEuNywxLjQsMi43LjMsMSwuMywyLjEuMSwzLjJsLTMuMywxNi41Yy0uMywxLjctMS4xLDMuMS0yLjUsNC4yLTEuMywxLjEtMi44LDEuNi00LjUsMS42aC0yLjhsNS41LDEyLjJoLTEyLjlsLTUuNS0xMi4yWk00NjIuNywxMDcuOWMuMywwLC42LS4xLjktLjMuMy0uMi40LS41LjUtLjhsMS41LTcuOWMwLS41LDAtLjgtLjMtMS4yLS4zLS4zLS42LS41LTEuMS0uNWgtMzAuMmw3LjEsMi4yLTEuNyw4LjZoMjMuMloiLz4KICAgIDxwYXRoIGQ9Ik00NzksMTIwLjdsLjctMy40aDEyLjlsLS4yLDEuMmMwLC41LDAsLjkuMywxLjIuMy4zLjcuNSwxLjEuNWgyNC4ybC03LjItMi4yLjctMy4zYzAtLjUsMC0uOS0uMy0xLjItLjMtLjMtLjctLjUtMS4xLS41aC0xOS45Yy0xLjIsMC0yLjQtLjMtMy40LS44LTEuMS0uNS0xLjktMS4yLTIuNi0yLjEtLjctLjktMS4yLTEuOS0xLjUtM3MtLjMtMi4zLDAtMy42bDItMTBjLjQtMS44LDEuMy0zLjQsMi43LTQuNSwxLjUtMS4yLDMuMS0xLjgsNS0xLjhoMjguNGMxLjIsMCwyLjQuMywzLjQuOCwxLjEuNSwxLjksMS4yLDIuNiwyLjEuNy45LDEuMiwxLjksMS41LDMsLjMsMS4xLjQsMi4zLjEsMy41bC0uNywzLjVoLTEyLjlsLjItMS4yYzAtLjUsMC0uOC0uMy0xLjItLjMtLjMtLjctLjUtMS4xLS41aC0xNy4xbC0uMiwyLjItLjUsMi42YzAsLjUsMCwuOS4zLDEuMi4zLjMuNy41LDEuMS41aDIwLjVjMS4yLjEsMi4zLjUsMy4yLDEsMSwuNiwxLjgsMS4zLDIuNCwyLjEuNy45LDEuMSwxLjgsMS40LDIuOS4zLDEuMS4zLDIuMiwwLDMuNGwtMi4yLDEwLjhjLS40LDEuOC0xLjMsMy40LTIuNyw0LjUtMS41LDEuMi0zLjEsMS44LTUsMS44aC0yOC4xYy0xLjIsMC0yLjQtLjMtMy40LS44LTEuMS0uNS0xLjktMS4yLTIuNi0yLjEtLjctLjktMS4yLTEuOS0xLjUtMy0uMy0xLjEtLjMtMi4zLDAtMy42WiIvPgogICAgPGxpbmUgY2xhc3M9InN0MCIgeDE9IjIyNi45IiB4Mj0iMjMyLjUiIHkyPSIuNSIvPgogICAgPGc+CiAgICAgIDxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0xODIuNywzMy4zYy0xLjksMC0zLjYuNi01LDEuOC0xLjUsMS4yLTIuNCwyLjctMi43LDQuNWwtMiwxMGMtLjIsMS4yLS4yLDIuNCwwLDMuNi4zLDEuMS44LDIuMiwxLjUsMywuNy45LDEuNiwxLjYsMi43LDIuMSwxLjEuNSwyLjIuOCwzLjQuOGgxOS45Yy41LDAsLjguMiwxLjEuNS4zLjMuNC43LjMsMS4ybC0uNywzLjMsNy4yLDIuMmgtMzguOWwtMiwxMGgzNy43YzEuOSwwLDMuNi0uNiw1LTEuOCwxLjUtMS4yLDIuNC0yLjcsMi43LTQuNWwyLjItMTAuOGMuMi0xLjIuMi0yLjMsMC0zLjQtLjMtMS4xLS44LTIuMS0xLjQtMi45LS43LS45LTEuNS0xLjYtMi40LTIuMS0xLS42LTItLjktMy4yLTFoLTEuMmMtLjgsMC0xLjgsMC0zLDBoLTE2LjNjLS41LDAtLjgtLjItMS4xLS41LS4zLS4zLS40LS43LS4zLTEuMmwuNS0yLjYuMi0yLjJoMzIuNmwxLjktMTBoLTM4LjhaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0yNjguOSwzOGMtLjItLjktLjctMS43LTEuMi0yLjQtLjYtLjctMS4zLTEuMy0yLjItMS43LS45LS40LTEuOC0uNi0yLjgtLjZoLTM1LjZsLTEuOSwxMGgyOC42Yy41LDAsLjguMiwxLjEuNS4zLjMuNC43LjMsMS4ybC0xLjUsNy45YzAsLjMtLjMuNi0uNS44LS4zLjItLjYuMy0uOS4zaC0yOWwtNC40LDIyLjNoMTIuOWwyLTEwLTcuMS0yLjJoMzEuOGMxLjcsMCwzLjItLjUsNC41LTEuNiwxLjMtMS4xLDIuMS0yLjUsMi41LTQuMmwzLjUtMTcuNWMuMi0xLC4yLTEuOSwwLTIuOFoiLz4KICAgIDwvZz4KICAgIDxnPgogICAgICA8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMTAxLjksMTkuN2gtMzkuOHMtMzUsNTktMzUsNTljLS4yLjEtLjQuMi0uNi4zLS40LjEtLjgsMC0xLjEtLjJsLTIuMS0yLjEtNS43LDZMNTQuOCwxOS42aC0xNWMtMi4xLDAtNCwxLTUuMSwyLjdMMy45LDczLjhsLTMuMyw1LjVjLS45LDEuOC0uOSw0LC4xLDUuOWwxMi4xLDIxLjYsOS40LDE2LjYsNTEuNS04Ny40czAsMCwuMSwwYy40LS4xLjgsMCwxLjEuMmwyLjEsMi4xLDUuNi01LjhoMHMtNTcuMiw5Ni42LTU3LjIsOTYuNmw1LjUsMTAuMS4zLjZjMi40LDQuMiw4LjYsNC40LDExLjEuMkwxMDcuNSwyOS4yYzIuNS00LjItLjctOS41LTUuNi05LjVaIi8+CiAgICAgIDxwYXRoIGQ9Ik0xMzgsNzcuNWwtMzAuMy01NC4yYy45LDEuOCwxLDQtLjIsNS45bC0xNC44LDI1LjJjLjEsMCwuMi0uMS4zLS4yLjQtLjEuOCwwLDEuMS4ybDIuMSwyLjEsNC44LTUtNTMuMSw5MS40aDI1czM5LjEtNjUuNywzOS4xLTY1LjdjLjMtLjQuNi0uNywxLS44LjQtLjEuOCwwLDEuMS4ybDIuMSwyLjEsNS43LTYtNDEuMiw3MC4xaDE4LjNjMi4yLDAsNC4yLTEuMiw1LjQtMy4xbDMzLjUtNTYuMmMxLjEtMS45LDEuMi00LjMsMC02LjNaIi8+CiAgICA8L2c+CiAgPC9nPgogIDxnPgogICAgPGc+CiAgICAgIDxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0yNjIuOSwzODkuNmMuOSwwLDEuNy4yLDIuNC41LjcuNCwxLjQuOSwxLjksMS41LjUuNi45LDEuMywxLjEsMi4xLjIuOC4yLDEuNiwwLDIuNWwtNC40LDIyLjJjLS4zLDEuMy0uOSwyLjQtMS45LDMuMi0xLC44LTIuMiwxLjItMy41LDEuMmgtMjQuMWMtLjksMC0xLjctLjItMi40LS41LS43LS40LTEuNC0uOS0xLjktMS41LS41LS42LS44LTEuMy0xLjEtMi4xLS4yLS44LS4zLTEuNiwwLTIuNWw0LjUtMjIuMWMuMy0xLjMuOS0yLjQsMS45LTMuMiwxLS44LDIuMi0xLjIsMy41LTEuMmgyNC4xWk0yMzYuNywzOTcuNGw1LjYsMS43LTIuOSwxNC44YzAsLjMsMCwuNy4yLjkuMi4zLjUuNC45LjRoMjBsLTUuNS0xLjcsMi45LTE0LjhjMC0uMywwLS43LS4yLS45LS4yLS4zLS41LS40LS45LS40aC0yMFoiLz4KICAgICAgPHBhdGggY2xhc3M9InN0MSIgZD0iTTI5MS45LDQxMy40aC0xMi4xbC0xLjksOS40aC0xMGw2LjYtMzMuMmgzMmMuOSwwLDEuNy4yLDIuNC41LjcuNCwxLjQuOSwxLjksMS41LjUuNi44LDEuMywxLjEsMi4xLjIuOC4zLDEuNiwwLDIuNWwtMi42LDEyLjhjLS4zLDEuMy0uOSwyLjQtMS45LDMuMi0xLC44LTIuMiwxLjMtMy41LDEuM2gtMi4xbDQuMiw5LjRoLTEwbC00LjItOS40Wk0yOTkuMiw0MDUuN2MuMywwLC41LDAsLjctLjIuMi0uMi4zLS40LjQtLjZsMS4yLTYuMWMwLS4zLDAtLjctLjItLjktLjItLjMtLjUtLjQtLjgtLjRoLTIzLjNsNS41LDEuNy0xLjMsNi42aDE3LjlaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0zMTQuOSwzODkuNmgzMy45bC0xLjYsNy43aC0xNi45bDUuNiwxLjctNC44LDIzLjhoLTExLjFsNS4xLTI1LjVoLTExLjdsMS42LTcuN1oiLz4KICAgICAgPHBhdGggY2xhc3M9InN0MSIgZD0iTTM0Ni44LDQxNS41bC41LTIuN2gxMGwtLjIuOWMwLC4zLDAsLjcuMi45LjIuMy41LjQuOS40aDE4LjdsLTUuNi0xLjcuNS0yLjZjMC0uMywwLS43LS4yLS45LS4yLS4zLS41LS40LS45LS40aC0xNS40Yy0uOSwwLTEuOC0uMi0yLjctLjYtLjgtLjQtMS41LS45LTItMS42LS41LS43LS45LTEuNC0xLjItMi4zcy0uMy0xLjgsMC0yLjhsMS41LTcuN2MuMy0xLjQsMS0yLjYsMi4xLTMuNSwxLjEtLjksMi40LTEuNCwzLjktMS40aDIxLjljLjksMCwxLjguMiwyLjcuNi44LjQsMS41LjksMiwxLjZzLjksMS40LDEuMiwyLjNjLjMuOS4zLDEuOCwwLDIuN2wtLjYsMi43aC0xMGwuMi0uOWMwLS4zLDAtLjctLjItLjktLjItLjMtLjUtLjQtLjktLjRoLTEzLjJsLS4yLDEuNy0uNCwyYzAsLjMsMCwuNy4yLjkuMi4zLjUuNC45LjRoMTUuOGMuOS4xLDEuNy40LDIuNS44LjcuNCwxLjQsMSwxLjksMS42LjUuNy45LDEuNCwxLjEsMi4zLjIuOC4yLDEuNywwLDIuNmwtMS43LDguM2MtLjMsMS40LTEsMi42LTIuMSwzLjUtMS4xLjktMi40LDEuNC0zLjksMS40aC0yMS43Yy0uOSwwLTEuOC0uMi0yLjctLjYtLjgtLjQtMS41LS45LTItMS42LS41LS43LS45LTEuNC0xLjItMi4zLS4yLS45LS4zLTEuOCwwLTIuOFoiLz4KICAgICAgPHBhdGggZD0iTTE1My45LDQ2My44aC05LjRsLTYuMS0yNi42aC01LjlsNS41LDEuNy01LjIsMjQuOWgtMTAuMmw2LjYtMzMuMmgxOGwzLjYsMjAuNSwxMC4yLTIwLjVoMTkuMWwtNi42LDMzLjJoLTEwLjJsNS0yNi42LTE0LjQsMjYuNloiLz4KICAgICAgPHBhdGggZD0iTTE5MS42LDQ1NC41bC0xLjksOS40aC0xMGw1LjctMjguOGMuMy0xLjMuOS0yLjQsMS45LTMuMiwxLS44LDIuMi0xLjIsMy41LTEuMmgyM2MuOSwwLDEuNy4yLDIuNC41LjcuNCwxLjQuOSwxLjksMS41LjUuNi44LDEuMywxLjEsMi4xLjIuOC4yLDEuNiwwLDIuNWwtNS4zLDI2LjZoLTEwbDEuOS05LjRoLTE0LjRaTTIwNy42LDQ0Ni43bDEuNC03YzAtLjMsMC0uNy0uMi0uOS0uMi0uMy0uNS0uNC0uOS0uNGgtMTguOWw1LjUsMS43LTEuMyw2LjZoMTQuNFoiLz4KICAgICAgPHBhdGggZD0iTTIyMi4zLDQzMC42aDMzLjlsLTEuNiw3LjdoLTE2LjlsNS42LDEuNy00LjgsMjMuOGgtMTEuMWw1LjEtMjUuNWgtMTEuN2wxLjYtNy43WiIvPgogICAgICA8cGF0aCBkPSJNMjU3LjMsNDMwLjZoMzMuOWwtMS42LDcuN2gtMTYuOWw1LjYsMS43LTQuOCwyMy44aC0xMS4xbDUuMS0yNS41aC0xMS43bDEuNi03LjdaIi8+CiAgICAgIDxwYXRoIGQ9Ik0yOTcsNDM4LjRsNS42LDEuNy0uNywzLjZoMTcuN2wtMS40LDcuMmgtMTcuOGwtLjgsMy45YzAsLjMsMCwuNy4yLjkuMi4zLjUuNC45LjRoMTkuNmwtMS41LDcuN2gtMjQuMmMtLjksMC0xLjctLjItMi40LS41LS43LS40LTEuNC0uOS0xLjktMS41LS41LS42LS44LTEuMy0xLjEtMi4xLS4yLS44LS4zLTEuNiwwLTIuNWw1LjMtMjYuNmgzMWwtMS42LDcuN2gtMjYuOVoiLz4KICAgICAgPHBhdGggZD0iTTM0Ny44LDQ1NC41aC0xMi4xbC0xLjksOS40aC0xMGw2LjYtMzMuMmgzMmMuOSwwLDEuNy4yLDIuNC41LjcuNCwxLjQuOSwxLjksMS41LjUuNi44LDEuMywxLjEsMi4xLjIuOC4zLDEuNiwwLDIuNWwtMi42LDEyLjhjLS4zLDEuMy0uOSwyLjQtMS45LDMuMi0xLC44LTIuMiwxLjMtMy41LDEuM2gtMi4xbDQuMiw5LjRoLTEwbC00LjItOS40Wk0zNTUuMSw0NDYuN2MuMywwLC41LDAsLjctLjIuMi0uMi4zLS40LjQtLjZsMS4yLTYuMWMwLS4zLDAtLjctLjItLjktLjItLjMtLjUtLjQtLjgtLjRoLTIzLjNsNS41LDEuNy0xLjMsNi42aDE3LjlaIi8+CiAgICAgIDxwYXRoIGQ9Ik0zNjcuNyw0NTYuNWwuNS0yLjdoMTBsLS4yLjljMCwuMywwLC43LjIuOS4yLjMuNS40LjkuNGgxOC43bC01LjYtMS43LjUtMi42YzAtLjMsMC0uNy0uMi0uOS0uMi0uMy0uNS0uNC0uOS0uNGgtMTUuNGMtLjksMC0xLjgtLjItMi43LS42LS44LS40LTEuNS0uOS0yLTEuNi0uNS0uNy0uOS0xLjQtMS4yLTIuM3MtLjMtMS44LDAtMi44bDEuNS03LjdjLjMtMS40LDEtMi42LDIuMS0zLjUsMS4xLS45LDIuNC0xLjQsMy45LTEuNGgyMS45Yy45LDAsMS44LjIsMi43LjYuOC40LDEuNS45LDIsMS42LjUuNy45LDEuNCwxLjIsMi4zLjMuOS4zLDEuOCwwLDIuN2wtLjYsMi43aC0xMGwuMi0uOWMwLS4zLDAtLjctLjItLjktLjItLjMtLjUtLjQtLjktLjRoLTEzLjJsLS4yLDEuNy0uNCwyYzAsLjMsMCwuNy4yLjkuMi4zLjUuNC45LjRoMTUuOGMuOS4xLDEuNy40LDIuNS44LjcuNCwxLjQsMSwxLjksMS42LjUuNy45LDEuNCwxLjEsMi4zLjIuOC4yLDEuNywwLDIuNmwtMS43LDguM2MtLjMsMS40LTEsMi42LTIuMSwzLjUtMS4xLjktMi40LDEuNC0zLjksMS40aC0yMS43Yy0uOSwwLTEuOC0uMi0yLjctLjYtLjgtLjQtMS41LS45LTItMS42LS41LS43LS45LTEuNC0xLjItMi4zLS4yLS45LS4zLTEuOCwwLTIuOFoiLz4KICAgICAgPGc+CiAgICAgICAgPHBhdGggY2xhc3M9InN0MSIgZD0iTTE2My43LDM4OS42Yy0xLjUsMC0yLjcuNS0zLjksMS40LTEuMS45LTEuOCwyLjEtMi4xLDMuNWwtMS41LDcuN2MtLjIuOS0uMiwxLjksMCwyLjguMi45LjYsMS43LDEuMiwyLjMuNi43LDEuMiwxLjIsMi4xLDEuNi44LjQsMS43LjYsMi43LjZoMTUuM2MuMywwLC42LjEuOS40LjIuMy4zLjYuMi45bC0uNSwyLjYsNS42LDEuN2gtMzBsLTEuNiw3LjdoMjkuMWMxLjUsMCwyLjctLjUsMy45LTEuNCwxLjEtLjksMS44LTIuMSwyLjEtMy41bDEuNy04LjNjLjItLjkuMi0xLjgsMC0yLjYtLjItLjgtLjYtMS42LTEuMS0yLjMtLjUtLjctMS4xLTEuMi0xLjktMS42LS43LS40LTEuNi0uNy0yLjUtLjdoLS45Yy0uNiwwLTEuNCwwLTIuMywwaC0xMi42Yy0uMywwLS42LS4xLS45LS40LS4yLS4zLS4zLS42LS4yLS45bC40LTIsLjItMS43aDI1LjJsMS41LTcuN2gtMjkuOVoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMjMwLjMsMzkzLjNjLS4yLS43LS41LTEuMy0uOS0xLjktLjQtLjYtMS0xLTEuNy0xLjMtLjctLjMtMS40LS41LTIuMS0uNWgtMjcuNWwtMS41LDcuN2gyMi4xYy4zLDAsLjYuMS44LjQuMi4zLjMuNi4yLjlsLTEuMiw2LjFjMCwuMy0uMi41LS40LjYtLjIuMi0uNC4yLS43LjJoLTIyLjNsLTMuNCwxNy4yaDEwbDEuNS03LjctNS41LTEuN2gyNC42YzEuMywwLDIuNS0uNCwzLjUtMS4zLDEtLjgsMS42LTEuOSwxLjktMy4ybDIuNy0xMy41Yy4yLS44LjEtMS41LDAtMi4yWiIvPgogICAgICA8L2c+CiAgICA8L2c+CiAgICA8Zz4KICAgICAgPHBhdGggZD0iTTI5OS4xLDM2MS4zbDMzLjUtNTYuMmMxLjEtMS45LDEuMi00LjMsMC02LjNsLTMwLjUtNTQuNmMtMi40LTQuMi04LjYtNC40LTExLjEtLjJsLTY1LjEsMTEwLjhjLTIuNSw0LjIuNyw5LjUsNS42LDkuNWwzLjEtMS42LDUyLjMtODYuN2MuMi0uMi40LS40LjctLjUuNC0uMS44LDAsMS4xLjJsMi4xLDIuMSw0LjgtNS01My4xLDkxLjRoMjVzMzkuMS02NS43LDM5LjEtNjUuN2MuMy0uNC42LS43LDEtLjguNC0uMS44LDAsMS4xLjJsMi4xLDIuMSw1LjctNi00MS4yLDcwLjFoMTguM2MyLjIsMCw0LjItMS4yLDUuNC0zLjFaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0yOTYuNywyNDFoLTM5LjhzLTM1LDU5LTM1LDU5Yy0uMi4xLS40LjItLjYuMy0uNC4xLS44LDAtMS4xLS4ybC0yLjEtMi4xLTUuNyw2LDM3LjEtNjIuOWgtMTVjLTIuMSwwLTQsMS01LjEsMi43bC0zMC43LDUxLjUtMy4zLDUuNWMtLjksMS44LS45LDQsLjEsNS45bDEyLjEsMjEuNiw5LjQsMTYuNiw1MS41LTg3LjRzMCwwLC4xLDBjLjQtLjEuOCwwLDEuMS4ybDIuMSwyLjEsNS42LTUuOGgwcy01Ny4yLDk2LjYtNTcuMiw5Ni42bDUuNSwxMC4xLjMuNmMyLjQsNC4yLDguNiw0LjQsMTEuMS4ybDY1LjEtMTEwLjhjMi41LTQuMi0uNy05LjUtNS42LTkuNVoiLz4KICAgIDwvZz4KICAgIDxnPgogICAgICA8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMjk2LjcsMjQxaC0zOS44cy0zNSw1OS0zNSw1OWMtLjIuMS0uNC4yLS42LjMtLjQuMS0uOCwwLTEuMS0uMmwtMi4xLTIuMS01LjcsNiwzNy4xLTYyLjloLTE1Yy0yLjEsMC00LDEtNS4xLDIuN2wtMzAuNyw1MS41LTMuMyw1LjVjLS45LDEuOC0uOSw0LC4xLDUuOWwxMi4xLDIxLjYsOS40LDE2LjYsNTEuNS04Ny40czAsMCwuMSwwYy40LS4xLjgsMCwxLjEuMmwyLjEsMi4xLDUuNi01LjhoMHMtNTcuMiw5Ni42LTU3LjIsOTYuNmw1LjUsMTAuMS4zLjZjMi40LDQuMiw4LjYsNC40LDExLjEuMmw2NS4xLTExMC44YzIuNS00LjItLjctOS41LTUuNi05LjVaIi8+CiAgICAgIDxwYXRoIGQ9Ik0zMzIuOCwyOTguOWwtMzAuMy01NC4yYy45LDEuOCwxLDQtLjIsNS45bC0xNC44LDI1LjJjLjEsMCwuMi0uMS4zLS4yLjQtLjEuOCwwLDEuMS4ybDIuMSwyLjEsNC44LTUtNTMuMSw5MS40aDI1czM5LjEtNjUuNywzOS4xLTY1LjdjLjMtLjQuNi0uNywxLS44LjQtLjEuOCwwLDEuMS4ybDIuMSwyLjEsNS43LTYtNDEuMiw3MC4xaDE4LjNjMi4yLDAsNC4yLTEuMiw1LjQtMy4xbDMzLjUtNTYuMmMxLjEtMS45LDEuMi00LjMsMC02LjNaIi8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4=" alt="SportsMatters">
   <ul>
     <li><a href="#services">Diensten</a></li>
+    <li><a href="#terrain">Het terrein</a></li>
     <li><a href="#cases">Samenwerkingen</a></li>
     <li><a href="#apropos">Over ons</a></li>
     <li><a href="#contact" style="color:var(--magenta);">Contact</a></li>
@@ -76,7 +210,9 @@ footer { background:#000; color:#777; font-size:13px; padding:26px 6vw; display:
 </nav>
 
 <header class="hero">
-  <div class="diag"></div>
+  <div class="hero-media">
+    <div class="ph" data-ph="Achtergrondfoto: breed beeld van een activatie in volle actie: publiek, merkkleuren, emotie. Liggend formaat, minimum 2400×1400 px."></div>
+  </div>
   <div class="hero-inner">
     <p class="kicker">Sportief field marketing</p>
     <h1>Connecting brands with <span class="m">passionate sports fans</span></h1>
@@ -84,16 +220,108 @@ footer { background:#000; color:#777; font-size:13px; padding:26px 6vw; display:
     <a class="btn" href="#contact">Activeer uw merk</a>
     <a class="btn ghost" href="#cases">Bekijk onze activaties</a>
   </div>
+  <span class="scroll-hint">Scroll</span>
 </header>
 
-<div class="stats">
-  <div><b>25+</b><span>jaar terreinervaring</span></div>
-  <div><b>2:1</b><span>aanbevolen verhouding activatie / rechten</span></div>
-  <div><b>RBFA · ASO · Flanders Classics</b><span>onze partners op het terrein</span></div>
+<div class="logos">
+  <div class="logos-inner">
+    <div class="slot">Cofidis</div>
+    <div class="slot">Fintro</div>
+    <div class="slot">Boels</div>
+    <div class="slot">Allianz</div>
+    <div class="slot">Zelektro</div>
+    <div class="slot">ENIT Italia</div>
+  </div>
 </div>
 
+<div class="stats">
+  <div><b data-count="25" data-suffix="+">25+</b><span>jaar terreinervaring</span></div>
+  <div><b>2:1</b><span>aanbevolen verhouding activatie / rechten</span></div>
+  <div><b data-count="1995" data-plain="1">1995</b><span>op de terreinen van de Belgische sport</span></div>
+</div>
+
+
+<section class="ledboard-wrap" id="partenaires">
+  <div class="ledboard-inner">
+    <div class="led-head">
+      <p class="kicker">Partners op het terrein</p>
+      <h2>Wij kennen wie het organiseert</h2>
+      <p>Federaties en organisatoren: daar worden de echte opportuniteiten onderhandeld. Tussen uw merk en hen zijn wij de verbindende schakel die de beloofde zichtbaarheid garandeert.</p>
+    </div>
+    <div class="ledboard">
+      <div class="led-viewport" id="ledViewport" aria-live="polite">
+      <article class="led-slide is-active" role="group" aria-roledescription="referentie" aria-label="1 op 7: RBFA">
+        <div class="led-logo">Logo RBFA<br>aan te leveren</div>
+        <div class="led-txt">
+          <p class="led-cat">Voetbal</p>
+          <h3>Koninklijke Belgische Voetbalbond</h3>
+          <p>Het Belgische voetbal verzamelt het grootste publiek van het land. Wij weten welke partnershipformules bestaan, van nationaal tot clubniveau, en welke uw merk echt vooruithelpt.</p>
+        </div>
+      </article>
+      <article class="led-slide" role="group" aria-roledescription="referentie" aria-label="2 op 7: COIB">
+        <div class="led-logo">Logo COIB<br>aan te leveren</div>
+        <div class="led-txt">
+          <p class="led-cat">Olympisme</p>
+          <h3>Belgisch Olympisch en Interfederaal Comité</h3>
+          <p>Het gemeenschappelijke huis van de Belgische sport en van Team Belgium. Een speelveld dat toegang geeft tot alle federaties en tot de grote olympische afspraken.</p>
+        </div>
+      </article>
+      <article class="led-slide" role="group" aria-roledescription="referentie" aria-label="3 op 7: Hockey Belgium">
+        <div class="led-logo">Logo Hockey Belgium<br>aan te leveren</div>
+        <div class="led-txt">
+          <p class="led-cat">Hockey</p>
+          <h3>Belgische hockeyfederatie</h3>
+          <p>De Red Lions en de Red Panthers hebben van hockey een topsport gemaakt in België. Een familiaal en kwalitatief publiek, en een WK in eigen land in augustus 2026.</p>
+        </div>
+      </article>
+      <article class="led-slide" role="group" aria-roledescription="referentie" aria-label="4 op 7: Basketball Belgium">
+        <div class="led-logo">Logo Basketball Belgium<br>aan te leveren</div>
+        <div class="led-txt">
+          <p class="led-cat">Basketbal</p>
+          <h3>Belgische basketbalfederatie</h3>
+          <p>Het Belgische basketbal groeit, gedragen door de Belgian Cats. Zalen op mensenmaat, ideaal voor activaties dicht bij het publiek, waar het merk echt contact maakt.</p>
+        </div>
+      </article>
+      <article class="led-slide" role="group" aria-roledescription="referentie" aria-label="5 op 7: ASO">
+        <div class="led-logo">Logo ASO<br>aan te leveren</div>
+        <div class="led-txt">
+          <p class="led-cat">Wielrennen</p>
+          <h3>Amaury Sport Organisation</h3>
+          <p>De organisator van Luik-Bastenaken-Luik en de Waalse Pijl. Wij plaatsten er al merken, van Italia tot Cofidis, en wij kennen de coulissen.</p>
+        </div>
+      </article>
+      <article class="led-slide" role="group" aria-roledescription="referentie" aria-label="6 op 7: Flanders Classics">
+        <div class="led-logo">Logo Flanders Classics<br>aan te leveren</div>
+        <div class="led-txt">
+          <p class="led-cat">Wielrennen</p>
+          <h3>De Vlaamse klassiekers</h3>
+          <p>Ronde van Vlaanderen, Gent-Wevelgem: het Vlaamse voorjaar betekent enorm veel volk langs de weg. Logistiek een veeleisend terrein, en net daar maken wij het verschil.</p>
+        </div>
+      </article>
+      <article class="led-slide" role="group" aria-roledescription="referentie" aria-label="7 op 7: Belgian Cycling">
+        <div class="led-logo">Logo Belgian Cycling<br>aan te leveren</div>
+        <div class="led-txt">
+          <p class="led-cat">Wielrennen</p>
+          <h3>Belgische wielerfederatie</h3>
+          <p>Van veldrijden tot de weg, de federatie dekt het volledige sportjaar. Een ideale rode draad voor een merk dat aanwezigheid wil in de tijd, geen one shot.</p>
+        </div>
+      </article>
+      </div>
+      <div class="led-dots" id="ledDots">
+      <button type="button" data-go="0" aria-current="true" aria-label="Bekijk RBFA"></button>
+      <button type="button" data-go="1" aria-label="Bekijk COIB"></button>
+      <button type="button" data-go="2" aria-label="Bekijk Hockey Belgium"></button>
+      <button type="button" data-go="3" aria-label="Bekijk Basketball Belgium"></button>
+      <button type="button" data-go="4" aria-label="Bekijk ASO"></button>
+      <button type="button" data-go="5" aria-label="Bekijk Flanders Classics"></button>
+      <button type="button" data-go="6" aria-label="Bekijk Belgian Cycling"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="services">
-  <p class="kicker">Services</p>
+  <p class="kicker">Diensten</p>
   <h2>Uw sponsoring verdient meer dan een logo</h2>
   <p style="max-width:64ch; color:var(--gris);">Zichtbaarheid is het vertrekpunt, nooit het eindresultaat. Achter elk partnership zorgt SportsMatters ervoor dat alles klopt, van het contract tot de laatste VIP-tafel.</p>
   <div class="grid">
@@ -104,25 +332,63 @@ footer { background:#000; color:#777; font-size:13px; padding:26px 6vw; display:
     <div class="card"><h3>Goodies &amp; animaties</h3><p>Van rad van fortuin tot geproduceerde en geleverde goodies: objecten en animaties die de herinnering levend houden, lang na de wedstrijd.</p></div>
     <div class="card"><h3>Meting &amp; phygital</h3><p>Games, QR, opt-in captatie: elk dispositief bevat een digitale component om de reële impact te meten en uw CRM te voeden.</p></div>
   </div>
+
+  <div class="moments">
+    <div>
+      <div class="ph" data-ph="Verticale foto: voorbereiding: opbouw van de stand, verkenning, briefing van het team. Het onzichtbare werk. 1200×1500 px."></div>
+      <p class="step">01 · Vooraf</p>
+      <h3>Wij bereiden voor terwijl u werkt</h3>
+      <p>Onderhandeling, verkenning, opbouw: alles is geregeld voor uw teams ter plaatse aankomen.</p>
+    </div>
+    <div>
+      <div class="ph" data-ph="Verticale foto: de dag zelf: publiek, animatie, interactie met de fans. De energie van het terrein. 1200×1500 px."></div>
+      <p class="step">02 · Tijdens</p>
+      <h3>Het terrein draait, u ontvangt</h3>
+      <p>U wijdt zich aan uw gasten. Het dispositief, de logistiek en het onvoorziene zijn onze zaak.</p>
+    </div>
+    <div>
+      <div class="ph" data-ph="Verticale foto: erna: tevreden VIP-gasten, meegenomen goodies, herinnering. Het memorabele moment. 1200×1500 px."></div>
+      <p class="step">03 · Erna</p>
+      <h3>Wat blijft: de herinnering en de data</h3>
+      <p>Uw gasten vertrekken met een verhaal om te vertellen. U vertrekt met gekwalificeerde contacten.</p>
+    </div>
+  </div>
+</section>
+
+<section class="terrain" id="terrain">
+  <div class="terrain-inner">
+    <p class="kicker">Het terrein</p>
+    <h2>Hoe dat er echt uitziet</h2>
+    <p class="intro">Standen, koersen, supporters, goed ontvangen gasten. Field marketing vertel je niet, dat toon je.</p>
+    <div class="gallery">
+      <div class="ph w2 h2" data-ph="Hoofdfoto: de sterkste van het lot: publiek en merk. Liggend 1600×1200 px."></div>
+      <div class="ph" data-ph="Detail: goodie of signalisatie. Vierkant 800×800."></div>
+      <div class="ph" data-ph="Portret: een supporter, een emotie. Vierkant 800×800."></div>
+      <div class="ph h2" data-ph="Verticaal: stand in situatie. 800×1600 px."></div>
+      <div class="ph" data-ph="Detail: hospitality, VIP-tafel. Vierkant 800×800."></div>
+      <div class="ph w2" data-ph="Panorama: overzicht van een event. 1600×800 px."></div>
+      <div class="ph" data-ph="Animatie: rad van fortuin, game, activatie. Vierkant 800×800."></div>
+    </div>
+  </div>
 </section>
 
 <section class="cases" id="cases">
   <div class="cases-inner">
-    <p class="kicker">Collaborations</p>
+    <p class="kicker">Samenwerkingen</p>
     <h2>Zij vertrouwen ons op het terrein</h2>
     <div class="case-grid">
-      <div class="case"><div class="visual" style="background:var(--magenta);">Cofidis</div>
-        <div class="body"><small>Cyclisme · Liège-Bastogne-Liège</small><p>Terreinactivaties op de Ardense klassiekers: zichtbaarheid, animatie en games om het merk te verbinden met de fans van La Doyenne.</p></div></div>
-      <div class="case"><div class="visual" style="background:var(--noir);">Fintro</div>
-        <div class="body"><small>Football · RSC Anderlecht</small><p>Merkaanwezigheid en animaties op wedstrijdavonden, dicht bij de supporters.</p></div></div>
-      <div class="case"><div class="visual" style="background:linear-gradient(115deg, var(--magenta), var(--noir));">Boels</div>
-        <div class="body"><small>Événements cyclistes</small><p>Zichtbaarheidsdispositieven op de Belgische koersen om het merk in het peloton te verankeren.</p></div></div>
-      <div class="case"><div class="visual" style="background:var(--noir);">Allianz</div>
-        <div class="body"><small>Athlétisme · Allianz Memorial Van Damme</small><p>Aan de zijde van Allianz op de meest prestigieuze atletiekmeeting van België, in het hart van het Koning Boudewijnstadion.</p></div></div>
-      <div class="case"><div class="visual" style="background:var(--magenta);">Zelektro</div>
-        <div class="body"><small>Cyclo-cross · Saison 2026-27</small><p>Zichtbaarheid en partnership doorheen het volledige veldritseizoen: een rode draad op het terrein van herfst tot winter.</p></div></div>
-      <div class="case"><div class="visual" style="background:linear-gradient(115deg,#008C45 33%,#F4F5F0 33% 66%,#CD212A 66%);"><span style="color:#0a0a0a;">Italia</span></div>
-        <div class="body"><small>Tourisme · ENIT, Office italien du tourisme</small><p>"Italia"-zichtbaarheid op de Waalse Pijl en Luik-Bastenaken-Luik, verlengd met de digitale wedstrijden Discover Italia: 5.000 bezoekers, 61% engagement.</p></div></div>
+      <div class="case"><div class="visual ph" data-ph="Foto: Cofidis-activatie op de Ardense klassiekers: stand, publiek, truien."><span class="label">Cofidis</span></div>
+        <div class="body"><small>Wielrennen · Luik-Bastenaken-Luik</small><p>Terreinactivaties op de Ardense klassiekers: zichtbaarheid, animatie en games om het merk te verbinden met de fans van La Doyenne.</p></div></div>
+      <div class="case"><div class="visual ph" data-ph="Foto: wedstrijdavond in het Lotto Park: Fintro-animatie, supporters van Anderlecht."><span class="label">Fintro</span></div>
+        <div class="body"><small>Voetbal · RSC Anderlecht</small><p>Merkaanwezigheid en animaties op wedstrijdavonden, dicht bij de supporters.</p></div></div>
+      <div class="case"><div class="visual ph" data-ph="Foto: Boels-dispositief op een Belgische wielerwedstrijd, zichtbaarheid langs de weg."><span class="label">Boels</span></div>
+        <div class="body"><small>Wielerwedstrijden</small><p>Zichtbaarheidsdispositieven op de Belgische koersen om het merk in het peloton te verankeren.</p></div></div>
+      <div class="case"><div class="visual ph" data-ph="Foto: Memorial Van Damme, Koning Boudewijnstadion: Allianz-aanwezigheid op de meeting."><span class="label">Allianz</span></div>
+        <div class="body"><small>Atletiek · Allianz Memorial Van Damme</small><p>Aan de zijde van Allianz op de meest prestigieuze atletiekmeeting van België, in het hart van het Koning Boudewijnstadion.</p></div></div>
+      <div class="case"><div class="visual ph" data-ph="Foto: veldrijden, seizoen 2026-27: Zelektro-zichtbaarheid in de modder en het publiek."><span class="label">Zelektro</span></div>
+        <div class="body"><small>Veldrijden · Seizoen 2026-27</small><p>Zichtbaarheid en partnership doorheen het volledige veldritseizoen: een rode draad op het terrein van herfst tot winter.</p></div></div>
+      <div class="case"><div class="visual ph" data-ph="Foto: Italia-zichtbaarheid op de Waalse Pijl of Luik-Bastenaken-Luik."><span class="label">Italia</span></div>
+        <div class="body"><small>Toerisme · ENIT, Italiaans bureau voor toerisme</small><p>"Italia"-zichtbaarheid op de Waalse Pijl en Luik-Bastenaken-Luik, verlengd met de digitale wedstrijden Discover Italia: 5.000 bezoekers, 61% engagement.</p></div></div>
     </div>
   </div>
 </section>
@@ -133,13 +399,23 @@ footer { background:#000; color:#777; font-size:13px; padding:26px 6vw; display:
   <p>Geslaagde sponsoring meet je niet aan het aantal geplaatste logo's, maar aan de memorabele momenten. Wat uw gasten maandagochtend vertellen, dat maakt het verschil.</p>
 </section>
 
+<section class="quote">
+  <div class="quote-inner">
+    <div class="ph" data-ph="Foto van de geciteerde klant. Vierkant 600×600 px."></div>
+    <div>
+      <blockquote>&laquo;&nbsp;Plaats voorbehouden voor een klantengetuigenis: een korte zin die zegt wat SportsMatters concreet veranderde op de dag zelf.&nbsp;&raquo;</blockquote>
+      <cite>Voornaam Naam &middot; Functie, Merk</cite>
+    </div>
+  </div>
+</section>
+
 <section class="about" id="apropos">
-  <div class="portrait"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iQ2FscXVlXzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIxMjAgMjAwIDI5MCAyNjQiPgogIDwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAzMC42LjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiAyLjEuNCBCdWlsZCAxMDkpICAtLT4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLnN0MCB7CiAgICAgICAgZmlsbDogI2ZmZjsKICAgICAgfQoKICAgICAgLnN0MSB7CiAgICAgICAgZmlsbDogI2M1MjI3MDsKICAgICAgfQogICAgICBwYXRoOm5vdCguc3QwKTpub3QoLnN0MSkgeyBmaWxsOiAjZmZmOyB9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8Zz4KICAgIDxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0zMTEuMiwzMy4zYzEuMSwwLDIuMS4yLDMuMS43LDEsLjUsMS44LDEuMSwyLjQsMS45LjcuOCwxLjEsMS43LDEuNCwyLjcuMywxLC4zLDIuMSwwLDMuMmwtNS43LDI4LjdjLS4zLDEuNy0xLjIsMy4xLTIuNSw0LjItMS4zLDEuMS0yLjksMS42LTQuNiwxLjZoLTMxLjJjLTEuMSwwLTIuMi0uMi0zLjItLjctMS0uNS0xLjgtMS4xLTIuNC0xLjktLjYtLjgtMS4xLTEuNy0xLjQtMi44LS4zLTEtLjMtMi4xLS4xLTMuMmw1LjgtMjguN2MuMy0xLjcsMS4xLTMuMSwyLjUtNC4yLDEuMy0xLjEsMi44LTEuNiw0LjUtMS42aDMxLjNaTTI3Ny4zLDQzLjNsNy4yLDIuMi0zLjgsMTkuMWMwLC41LDAsLjkuMywxLjIuMy4zLjcuNSwxLjEuNWgyNS45bC03LjEtMi4yLDMuOC0xOS4xYzAtLjUsMC0uOC0uMy0xLjItLjMtLjMtLjctLjUtMS4xLS41aC0yNS45WiIvPgogICAgPHBhdGggY2xhc3M9InN0MSIgZD0iTTM0OC45LDY0LjFoLTE1LjdsLTIuNSwxMi4yaC0xMi45bDguNi00M2g0MS40YzEuMSwwLDIuMi4yLDMuMi43LDEsLjUsMS44LDEuMSwyLjQsMS45LjYuOCwxLjEsMS43LDEuNCwyLjcuMywxLC4zLDIuMS4xLDMuMmwtMy4zLDE2LjVjLS4zLDEuNy0xLjEsMy4xLTIuNSw0LjItMS4zLDEuMS0yLjgsMS42LTQuNiwxLjZoLTIuOGw1LjUsMTIuMmgtMTIuOWwtNS41LTEyLjJaTTM1OC4zLDU0Yy4zLDAsLjYtLjEuOS0uMy4zLS4yLjQtLjUuNS0uOGwxLjUtNy45YzAtLjUsMC0uOC0uMy0xLjItLjMtLjMtLjYtLjUtMS4xLS41aC0zMC4ybDcuMSwyLjItMS43LDguNmgyMy4yWiIvPgogICAgPHBhdGggY2xhc3M9InN0MSIgZD0iTTM3OC42LDMzLjNoNDMuOWwtMiwxMGgtMjEuOWw3LjIsMi4yLTYuMiwzMC45aC0xNC4zbDYuNi0zM2gtMTUuMmwyLTEwWiIvPgogICAgPHBhdGggY2xhc3M9InN0MSIgZD0iTTQxOS45LDY2LjhsLjctMy40aDEyLjlsLS4yLDEuMmMwLC41LDAsLjkuMywxLjIuMy4zLjcuNSwxLjEuNWgyNC4ybC03LjItMi4yLjctMy4zYzAtLjUsMC0uOS0uMy0xLjItLjMtLjMtLjctLjUtMS4xLS41aC0xOS45Yy0xLjIsMC0yLjQtLjMtMy40LS44LTEuMS0uNS0xLjktMS4yLTIuNi0yLjEtLjctLjktMS4yLTEuOS0xLjUtM3MtLjMtMi4zLDAtMy42bDItMTBjLjQtMS44LDEuMy0zLjQsMi43LTQuNSwxLjUtMS4yLDMuMS0xLjgsNS0xLjhoMjguNGMxLjIsMCwyLjQuMywzLjQuOCwxLjEuNSwxLjksMS4yLDIuNiwyLjFzMS4yLDEuOSwxLjUsM2MuMywxLjEuNCwyLjMuMSwzLjVsLS43LDMuNWgtMTIuOWwuMi0xLjJjMC0uNSwwLS44LS4zLTEuMi0uMy0uMy0uNy0uNS0xLjEtLjVoLTE3LjFsLS4zLDIuMi0uNSwyLjZjMCwuNSwwLC45LjMsMS4yLjMuMy43LjUsMS4xLjVoMjAuNWMxLjIuMSwyLjMuNSwzLjIsMSwxLC42LDEuOCwxLjMsMi40LDIuMS43LjksMS4xLDEuOCwxLjQsMi45LjMsMS4xLjMsMi4yLDAsMy40bC0yLjIsMTAuOGMtLjQsMS44LTEuMywzLjQtMi43LDQuNS0xLjUsMS4yLTMuMSwxLjgtNSwxLjhoLTI4LjFjLTEuMiwwLTIuNC0uMy0zLjQtLjgtMS4xLS41LTEuOS0xLjItMi42LTIuMS0uNy0uOS0xLjItMS45LTEuNS0zLS4zLTEuMS0uMy0yLjMsMC0zLjZaIi8+CiAgICA8cGF0aCBkPSJNMjAyLDEzMC4yaC0xMi4ybC03LjktMzQuNGgtNy42bDcuMSwyLjItNi43LDMyLjNoLTEzLjNsOC42LTQzaDIzLjNsNC43LDI2LjYsMTMuMy0yNi42aDI0LjdsLTguNiw0M2gtMTMuMmw2LjUtMzQuNC0xOC43LDM0LjRaIi8+CiAgICA8cGF0aCBkPSJNMjUwLjksMTE4bC0yLjUsMTIuMmgtMTIuOWw3LjQtMzcuM2MuMy0xLjcsMS4yLTMuMSwyLjUtNC4yLDEuMy0xLjEsMi45LTEuNiw0LjYtMS42aDI5LjhjMS4xLDAsMi4yLjIsMy4yLjcsMSwuNSwxLjgsMS4xLDIuNCwxLjkuNi44LDEuMSwxLjcsMS40LDIuNy4zLDEsLjMsMi4xLDAsMy4ybC02LjksMzQuNWgtMTIuOWwyLjUtMTIuMmgtMTguNlpNMjcxLjYsMTA3LjlsMS44LTljMC0uNSwwLS44LS4zLTEuMi0uMy0uMy0uNy0uNS0xLjEtLjVoLTI0LjVsNy4xLDIuMi0xLjcsOC42aDE4LjdaIi8+CiAgICA8cGF0aCBkPSJNMjkwLjYsODcuMWg0My45bC0yLDEwaC0yMS45bDcuMiwyLjItNi4yLDMwLjloLTE0LjNsNi42LTMzaC0xNS4ybDItMTBaIi8+CiAgICA8cGF0aCBkPSJNMzM2LDg3LjFoNDMuOWwtMiwxMGgtMjEuOWw3LjIsMi4yLTYuMiwzMC45aC0xNC4zbDYuNi0zM2gtMTUuMmwyLTEwWiIvPgogICAgPHBhdGggZD0iTTM4Ny40LDk3LjJsNy4yLDIuMi0uOSw0LjdoMjNsLTEuOCw5LjNoLTIzLjFsLTEsNS4xYzAsLjUsMCwuOS4zLDEuMi4zLjMuNy41LDEuMS41aDI1LjVsLTIsMTBoLTMxLjRjLTEuMSwwLTIuMi0uMi0zLjItLjctMS0uNS0xLjgtMS4xLTIuNC0xLjktLjYtLjgtMS4xLTEuNy0xLjQtMi44LS4zLTEtLjMtMi4xLS4xLTMuMmw2LjktMzQuNGg0MC4ybC0yLDEwaC0zNC45WiIvPgogICAgPHBhdGggZD0iTTQ1My4zLDExOGgtMTUuN2wtMi41LDEyLjJoLTEyLjlsOC42LTQzaDQxLjRjMS4xLDAsMi4yLjIsMy4yLjcsMSwuNSwxLjgsMS4xLDIuNCwxLjkuNi44LDEuMSwxLjcsMS40LDIuNy4zLDEsLjMsMi4xLjEsMy4ybC0zLjMsMTYuNWMtLjMsMS43LTEuMSwzLjEtMi41LDQuMi0xLjMsMS4xLTIuOCwxLjYtNC41LDEuNmgtMi44bDUuNSwxMi4yaC0xMi45bC01LjUtMTIuMlpNNDYyLjcsMTA3LjljLjMsMCwuNi0uMS45LS4zLjMtLjIuNC0uNS41LS44bDEuNS03LjljMC0uNSwwLS44LS4zLTEuMi0uMy0uMy0uNi0uNS0xLjEtLjVoLTMwLjJsNy4xLDIuMi0xLjcsOC42aDIzLjJaIi8+CiAgICA8cGF0aCBkPSJNNDc5LDEyMC43bC43LTMuNGgxMi45bC0uMiwxLjJjMCwuNSwwLC45LjMsMS4yLjMuMy43LjUsMS4xLjVoMjQuMmwtNy4yLTIuMi43LTMuM2MwLS41LDAtLjktLjMtMS4yLS4zLS4zLS43LS41LTEuMS0uNWgtMTkuOWMtMS4yLDAtMi40LS4zLTMuNC0uOC0xLjEtLjUtMS45LTEuMi0yLjYtMi4xLS43LS45LTEuMi0xLjktMS41LTNzLS4zLTIuMywwLTMuNmwyLTEwYy40LTEuOCwxLjMtMy40LDIuNy00LjUsMS41LTEuMiwzLjEtMS44LDUtMS44aDI4LjRjMS4yLDAsMi40LjMsMy40LjgsMS4xLjUsMS45LDEuMiwyLjYsMi4xLjcuOSwxLjIsMS45LDEuNSwzLC4zLDEuMS40LDIuMy4xLDMuNWwtLjcsMy41aC0xMi45bC4yLTEuMmMwLS41LDAtLjgtLjMtMS4yLS4zLS4zLS43LS41LTEuMS0uNWgtMTcuMWwtLjIsMi4yLS41LDIuNmMwLC41LDAsLjkuMywxLjIuMy4zLjcuNSwxLjEuNWgyMC41YzEuMi4xLDIuMy41LDMuMiwxLDEsLjYsMS44LDEuMywyLjQsMi4xLjcuOSwxLjEsMS44LDEuNCwyLjkuMywxLjEuMywyLjIsMCwzLjRsLTIuMiwxMC44Yy0uNCwxLjgtMS4zLDMuNC0yLjcsNC41LTEuNSwxLjItMy4xLDEuOC01LDEuOGgtMjguMWMtMS4yLDAtMi40LS4zLTMuNC0uOC0xLjEtLjUtMS45LTEuMi0yLjYtMi4xLS43LS45LTEuMi0xLjktMS41LTMtLjMtMS4xLS4zLTIuMywwLTMuNloiLz4KICAgIDxsaW5lIGNsYXNzPSJzdDAiIHgxPSIyMjYuOSIgeDI9IjIzMi41IiB5Mj0iLjUiLz4KICAgIDxnPgogICAgICA8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMTgyLjcsMzMuM2MtMS45LDAtMy42LjYtNSwxLjgtMS41LDEuMi0yLjQsMi43LTIuNyw0LjVsLTIsMTBjLS4yLDEuMi0uMiwyLjQsMCwzLjYuMywxLjEuOCwyLjIsMS41LDMsLjcuOSwxLjYsMS42LDIuNywyLjEsMS4xLjUsMi4yLjgsMy40LjhoMTkuOWMuNSwwLC44LjIsMS4xLjUuMy4zLjQuNy4zLDEuMmwtLjcsMy4zLDcuMiwyLjJoLTM4LjlsLTIsMTBoMzcuN2MxLjksMCwzLjYtLjYsNS0xLjgsMS41LTEuMiwyLjQtMi43LDIuNy00LjVsMi4yLTEwLjhjLjItMS4yLjItMi4zLDAtMy40LS4zLTEuMS0uOC0yLjEtMS40LTIuOS0uNy0uOS0xLjUtMS42LTIuNC0yLjEtMS0uNi0yLS45LTMuMi0xaC0xLjJjLS44LDAtMS44LDAtMywwaC0xNi4zYy0uNSwwLS44LS4yLTEuMS0uNS0uMy0uMy0uNC0uNy0uMy0xLjJsLjUtMi42LjItMi4yaDMyLjZsMS45LTEwaC0zOC44WiIvPgogICAgICA8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMjY4LjksMzhjLS4yLS45LS43LTEuNy0xLjItMi40LS42LS43LTEuMy0xLjMtMi4yLTEuNy0uOS0uNC0xLjgtLjYtMi44LS42aC0zNS42bC0xLjksMTBoMjguNmMuNSwwLC44LjIsMS4xLjUuMy4zLjQuNy4zLDEuMmwtMS41LDcuOWMwLC4zLS4zLjYtLjUuOC0uMy4yLS42LjMtLjkuM2gtMjlsLTQuNCwyMi4zaDEyLjlsMi0xMC03LjEtMi4yaDMxLjhjMS43LDAsMy4yLS41LDQuNS0xLjYsMS4zLTEuMSwyLjEtMi41LDIuNS00LjJsMy41LTE3LjVjLjItMSwuMi0xLjksMC0yLjhaIi8+CiAgICA8L2c+CiAgICA8Zz4KICAgICAgPHBhdGggY2xhc3M9InN0MSIgZD0iTTEwMS45LDE5LjdoLTM5LjhzLTM1LDU5LTM1LDU5Yy0uMi4xLS40LjItLjYuMy0uNC4xLS44LDAtMS4xLS4ybC0yLjEtMi4xLTUuNyw2TDU0LjgsMTkuNmgtMTVjLTIuMSwwLTQsMS01LjEsMi43TDMuOSw3My44bC0zLjMsNS41Yy0uOSwxLjgtLjksNCwuMSw1LjlsMTIuMSwyMS42LDkuNCwxNi42LDUxLjUtODcuNHMwLDAsLjEsMGMuNC0uMS44LDAsMS4xLjJsMi4xLDIuMSw1LjYtNS44aDBzLTU3LjIsOTYuNi01Ny4yLDk2LjZsNS41LDEwLjEuMy42YzIuNCw0LjIsOC42LDQuNCwxMS4xLjJMMTA3LjUsMjkuMmMyLjUtNC4yLS43LTkuNS01LjYtOS41WiIvPgogICAgICA8cGF0aCBkPSJNMTM4LDc3LjVsLTMwLjMtNTQuMmMuOSwxLjgsMSw0LS4yLDUuOWwtMTQuOCwyNS4yYy4xLDAsLjItLjEuMy0uMi40LS4xLjgsMCwxLjEuMmwyLjEsMi4xLDQuOC01LTUzLjEsOTEuNGgyNXMzOS4xLTY1LjcsMzkuMS02NS43Yy4zLS40LjYtLjcsMS0uOC40LS4xLjgsMCwxLjEuMmwyLjEsMi4xLDUuNy02LTQxLjIsNzAuMWgxOC4zYzIuMiwwLDQuMi0xLjIsNS40LTMuMWwzMy41LTU2LjJjMS4xLTEuOSwxLjItNC4zLDAtNi4zWiIvPgogICAgPC9nPgogIDwvZz4KICA8Zz4KICAgIDxnPgogICAgICA8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMjYyLjksMzg5LjZjLjksMCwxLjcuMiwyLjQuNS43LjQsMS40LjksMS45LDEuNS41LjYuOSwxLjMsMS4xLDIuMS4yLjguMiwxLjYsMCwyLjVsLTQuNCwyMi4yYy0uMywxLjMtLjksMi40LTEuOSwzLjItMSwuOC0yLjIsMS4yLTMuNSwxLjJoLTI0LjFjLS45LDAtMS43LS4yLTIuNC0uNS0uNy0uNC0xLjQtLjktMS45LTEuNS0uNS0uNi0uOC0xLjMtMS4xLTIuMS0uMi0uOC0uMy0xLjYsMC0yLjVsNC41LTIyLjFjLjMtMS4zLjktMi40LDEuOS0zLjIsMS0uOCwyLjItMS4yLDMuNS0xLjJoMjQuMVpNMjM2LjcsMzk3LjRsNS42LDEuNy0yLjksMTQuOGMwLC4zLDAsLjcuMi45LjIuMy41LjQuOS40aDIwbC01LjUtMS43LDIuOS0xNC44YzAtLjMsMC0uNy0uMi0uOS0uMi0uMy0uNS0uNC0uOS0uNGgtMjBaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0yOTEuOSw0MTMuNGgtMTIuMWwtMS45LDkuNGgtMTBsNi42LTMzLjJoMzJjLjksMCwxLjcuMiwyLjQuNS43LjQsMS40LjksMS45LDEuNS41LjYuOCwxLjMsMS4xLDIuMS4yLjguMywxLjYsMCwyLjVsLTIuNiwxMi44Yy0uMywxLjMtLjksMi40LTEuOSwzLjItMSwuOC0yLjIsMS4zLTMuNSwxLjNoLTIuMWw0LjIsOS40aC0xMGwtNC4yLTkuNFpNMjk5LjIsNDA1LjdjLjMsMCwuNSwwLC43LS4yLjItLjIuMy0uNC40LS42bDEuMi02LjFjMC0uMywwLS43LS4yLS45LS4yLS4zLS41LS40LS44LS40aC0yMy4zbDUuNSwxLjctMS4zLDYuNmgxNy45WiIvPgogICAgICA8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMzE0LjksMzg5LjZoMzMuOWwtMS42LDcuN2gtMTYuOWw1LjYsMS43LTQuOCwyMy44aC0xMS4xbDUuMS0yNS41aC0xMS43bDEuNi03LjdaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0zNDYuOCw0MTUuNWwuNS0yLjdoMTBsLS4yLjljMCwuMywwLC43LjIuOS4yLjMuNS40LjkuNGgxOC43bC01LjYtMS43LjUtMi42YzAtLjMsMC0uNy0uMi0uOS0uMi0uMy0uNS0uNC0uOS0uNGgtMTUuNGMtLjksMC0xLjgtLjItMi43LS42LS44LS40LTEuNS0uOS0yLTEuNi0uNS0uNy0uOS0xLjQtMS4yLTIuM3MtLjMtMS44LDAtMi44bDEuNS03LjdjLjMtMS40LDEtMi42LDIuMS0zLjUsMS4xLS45LDIuNC0xLjQsMy45LTEuNGgyMS45Yy45LDAsMS44LjIsMi43LjYuOC40LDEuNS45LDIsMS42cy45LDEuNCwxLjIsMi4zYy4zLjkuMywxLjgsMCwyLjdsLS42LDIuN2gtMTBsLjItLjljMC0uMywwLS43LS4yLS45LS4yLS4zLS41LS40LS45LS40aC0xMy4ybC0uMiwxLjctLjQsMmMwLC4zLDAsLjcuMi45LjIuMy41LjQuOS40aDE1LjhjLjkuMSwxLjcuNCwyLjUuOC43LjQsMS40LDEsMS45LDEuNi41LjcuOSwxLjQsMS4xLDIuMy4yLjguMiwxLjcsMCwyLjZsLTEuNyw4LjNjLS4zLDEuNC0xLDIuNi0yLjEsMy41LTEuMS45LTIuNCwxLjQtMy45LDEuNGgtMjEuN2MtLjksMC0xLjgtLjItMi43LS42LS44LS40LTEuNS0uOS0yLTEuNi0uNS0uNy0uOS0xLjQtMS4yLTIuMy0uMi0uOS0uMy0xLjgsMC0yLjhaIi8+CiAgICAgIDxwYXRoIGQ9Ik0xNTMuOSw0NjMuOGgtOS40bC02LjEtMjYuNmgtNS45bDUuNSwxLjctNS4yLDI0LjloLTEwLjJsNi42LTMzLjJoMThsMy42LDIwLjUsMTAuMi0yMC41aDE5LjFsLTYuNiwzMy4yaC0xMC4ybDUtMjYuNi0xNC40LDI2LjZaIi8+CiAgICAgIDxwYXRoIGQ9Ik0xOTEuNiw0NTQuNWwtMS45LDkuNGgtMTBsNS43LTI4LjhjLjMtMS4zLjktMi40LDEuOS0zLjIsMS0uOCwyLjItMS4yLDMuNS0xLjJoMjNjLjksMCwxLjcuMiwyLjQuNS43LjQsMS40LjksMS45LDEuNS41LjYuOCwxLjMsMS4xLDIuMS4yLjguMiwxLjYsMCwyLjVsLTUuMywyNi42aC0xMGwxLjktOS40aC0xNC40Wk0yMDcuNiw0NDYuN2wxLjQtN2MwLS4zLDAtLjctLjItLjktLjItLjMtLjUtLjQtLjktLjRoLTE4LjlsNS41LDEuNy0xLjMsNi42aDE0LjRaIi8+CiAgICAgIDxwYXRoIGQ9Ik0yMjIuMyw0MzAuNmgzMy45bC0xLjYsNy43aC0xNi45bDUuNiwxLjctNC44LDIzLjhoLTExLjFsNS4xLTI1LjVoLTExLjdsMS42LTcuN1oiLz4KICAgICAgPHBhdGggZD0iTTI1Ny4zLDQzMC42aDMzLjlsLTEuNiw3LjdoLTE2LjlsNS42LDEuNy00LjgsMjMuOGgtMTEuMWw1LjEtMjUuNWgtMTEuN2wxLjYtNy43WiIvPgogICAgICA8cGF0aCBkPSJNMjk3LDQzOC40bDUuNiwxLjctLjcsMy42aDE3LjdsLTEuNCw3LjJoLTE3LjhsLS44LDMuOWMwLC4zLDAsLjcuMi45LjIuMy41LjQuOS40aDE5LjZsLTEuNSw3LjdoLTI0LjJjLS45LDAtMS43LS4yLTIuNC0uNS0uNy0uNC0xLjQtLjktMS45LTEuNS0uNS0uNi0uOC0xLjMtMS4xLTIuMS0uMi0uOC0uMy0xLjYsMC0yLjVsNS4zLTI2LjZoMzFsLTEuNiw3LjdoLTI2LjlaIi8+CiAgICAgIDxwYXRoIGQ9Ik0zNDcuOCw0NTQuNWgtMTIuMWwtMS45LDkuNGgtMTBsNi42LTMzLjJoMzJjLjksMCwxLjcuMiwyLjQuNS43LjQsMS40LjksMS45LDEuNS41LjYuOCwxLjMsMS4xLDIuMS4yLjguMywxLjYsMCwyLjVsLTIuNiwxMi44Yy0uMywxLjMtLjksMi40LTEuOSwzLjItMSwuOC0yLjIsMS4zLTMuNSwxLjNoLTIuMWw0LjIsOS40aC0xMGwtNC4yLTkuNFpNMzU1LjEsNDQ2LjdjLjMsMCwuNSwwLC43LS4yLjItLjIuMy0uNC40LS42bDEuMi02LjFjMC0uMywwLS43LS4yLS45LS4yLS4zLS41LS40LS44LS40aC0yMy4zbDUuNSwxLjctMS4zLDYuNmgxNy45WiIvPgogICAgICA8cGF0aCBkPSJNMzY3LjcsNDU2LjVsLjUtMi43aDEwbC0uMi45YzAsLjMsMCwuNy4yLjkuMi4zLjUuNC45LjRoMTguN2wtNS42LTEuNy41LTIuNmMwLS4zLDAtLjctLjItLjktLjItLjMtLjUtLjQtLjktLjRoLTE1LjRjLS45LDAtMS44LS4yLTIuNy0uNi0uOC0uNC0xLjUtLjktMi0xLjYtLjUtLjctLjktMS40LTEuMi0yLjNzLS4zLTEuOCwwLTIuOGwxLjUtNy43Yy4zLTEuNCwxLTIuNiwyLjEtMy41LDEuMS0uOSwyLjQtMS40LDMuOS0xLjRoMjEuOWMuOSwwLDEuOC4yLDIuNy42LjguNCwxLjUuOSwyLDEuNi41LjcuOSwxLjQsMS4yLDIuMy4zLjkuMywxLjgsMCwyLjdsLS42LDIuN2gtMTBsLjItLjljMC0uMywwLS43LS4yLS45LS4yLS4zLS41LS40LS45LS40aC0xMy4ybC0uMiwxLjctLjQsMmMwLC4zLDAsLjcuMi45LjIuMy41LjQuOS40aDE1LjhjLjkuMSwxLjcuNCwyLjUuOC43LjQsMS40LDEsMS45LDEuNi41LjcuOSwxLjQsMS4xLDIuMy4yLjguMiwxLjcsMCwyLjZsLTEuNyw4LjNjLS4zLDEuNC0xLDIuNi0yLjEsMy41LTEuMS45LTIuNCwxLjQtMy45LDEuNGgtMjEuN2MtLjksMC0xLjgtLjItMi43LS42LS44LS40LTEuNS0uOS0yLTEuNi0uNS0uNy0uOS0xLjQtMS4yLTIuMy0uMi0uOS0uMy0xLjgsMC0yLjhaIi8+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0xNjMuNywzODkuNmMtMS41LDAtMi43LjUtMy45LDEuNC0xLjEuOS0xLjgsMi4xLTIuMSwzLjVsLTEuNSw3LjdjLS4yLjktLjIsMS45LDAsMi44LjIuOS42LDEuNywxLjIsMi4zLjYuNywxLjIsMS4yLDIuMSwxLjYuOC40LDEuNy42LDIuNy42aDE1LjNjLjMsMCwuNi4xLjkuNC4yLjMuMy42LjIuOWwtLjUsMi42LDUuNiwxLjdoLTMwbC0xLjYsNy43aDI5LjFjMS41LDAsMi43LS41LDMuOS0xLjQsMS4xLS45LDEuOC0yLjEsMi4xLTMuNWwxLjctOC4zYy4yLS45LjItMS44LDAtMi42LS4yLS44LS42LTEuNi0xLjEtMi4zLS41LS43LTEuMS0xLjItMS45LTEuNi0uNy0uNC0xLjYtLjctMi41LS43aC0uOWMtLjYsMC0xLjQsMC0yLjMsMGgtMTIuNmMtLjMsMC0uNi0uMS0uOS0uNC0uMi0uMy0uMy0uNi0uMi0uOWwuNC0yLC4yLTEuN2gyNS4ybDEuNS03LjdoLTI5LjlaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9InN0MSIgZD0iTTIzMC4zLDM5My4zYy0uMi0uNy0uNS0xLjMtLjktMS45LS40LS42LTEtMS0xLjctMS4zLS43LS4zLTEuNC0uNS0yLjEtLjVoLTI3LjVsLTEuNSw3LjdoMjIuMWMuMywwLC42LjEuOC40LjIuMy4zLjYuMi45bC0xLjIsNi4xYzAsLjMtLjIuNS0uNC42LS4yLjItLjQuMi0uNy4yaC0yMi4zbC0zLjQsMTcuMmgxMGwxLjUtNy43LTUuNS0xLjdoMjQuNmMxLjMsMCwyLjUtLjQsMy41LTEuMywxLS44LDEuNi0xLjksMS45LTMuMmwyLjctMTMuNWMuMi0uOC4xLTEuNSwwLTIuMloiLz4KICAgICAgPC9nPgogICAgPC9nPgogICAgPGc+CiAgICAgIDxwYXRoIGQ9Ik0yOTkuMSwzNjEuM2wzMy41LTU2LjJjMS4xLTEuOSwxLjItNC4zLDAtNi4zbC0zMC41LTU0LjZjLTIuNC00LjItOC42LTQuNC0xMS4xLS4ybC02NS4xLDExMC44Yy0yLjUsNC4yLjcsOS41LDUuNiw5LjVsMy4xLTEuNiw1Mi4zLTg2LjdjLjItLjIuNC0uNC43LS41LjQtLjEuOCwwLDEuMS4ybDIuMSwyLjEsNC44LTUtNTMuMSw5MS40aDI1czM5LjEtNjUuNywzOS4xLTY1LjdjLjMtLjQuNi0uNywxLS44LjQtLjEuOCwwLDEuMS4ybDIuMSwyLjEsNS43LTYtNDEuMiw3MC4xaDE4LjNjMi4yLDAsNC4yLTEuMiw1LjQtMy4xWiIvPgogICAgICA8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMjk2LjcsMjQxaC0zOS44cy0zNSw1OS0zNSw1OWMtLjIuMS0uNC4yLS42LjMtLjQuMS0uOCwwLTEuMS0uMmwtMi4xLTIuMS01LjcsNiwzNy4xLTYyLjloLTE1Yy0yLjEsMC00LDEtNS4xLDIuN2wtMzAuNyw1MS41LTMuMyw1LjVjLS45LDEuOC0uOSw0LC4xLDUuOWwxMi4xLDIxLjYsOS40LDE2LjYsNTEuNS04Ny40czAsMCwuMSwwYy40LS4xLjgsMCwxLjEuMmwyLjEsMi4xLDUuNi01LjhoMHMtNTcuMiw5Ni42LTU3LjIsOTYuNmw1LjUsMTAuMS4zLjZjMi40LDQuMiw4LjYsNC40LDExLjEuMmw2NS4xLTExMC44YzIuNS00LjItLjctOS41LTUuNi05LjVaIi8+CiAgICA8L2c+CiAgICA8Zz4KICAgICAgPHBhdGggY2xhc3M9InN0MSIgZD0iTTI5Ni43LDI0MWgtMzkuOHMtMzUsNTktMzUsNTljLS4yLjEtLjQuMi0uNi4zLS40LjEtLjgsMC0xLjEtLjJsLTIuMS0yLjEtNS43LDYsMzcuMS02Mi45aC0xNWMtMi4xLDAtNCwxLTUuMSwyLjdsLTMwLjcsNTEuNS0zLjMsNS41Yy0uOSwxLjgtLjksNCwuMSw1LjlsMTIuMSwyMS42LDkuNCwxNi42LDUxLjUtODcuNHMwLDAsLjEsMGMuNC0uMS44LDAsMS4xLjJsMi4xLDIuMSw1LjYtNS44aDBzLTU3LjIsOTYuNi01Ny4yLDk2LjZsNS41LDEwLjEuMy42YzIuNCw0LjIsOC42LDQuNCwxMS4xLjJsNjUuMS0xMTAuOGMyLjUtNC4yLS43LTkuNS01LjYtOS41WiIvPgogICAgICA8cGF0aCBkPSJNMzMyLjgsMjk4LjlsLTMwLjMtNTQuMmMuOSwxLjgsMSw0LS4yLDUuOWwtMTQuOCwyNS4yYy4xLDAsLjItLjEuMy0uMi40LS4xLjgsMCwxLjEuMmwyLjEsMi4xLDQuOC01LTUzLjEsOTEuNGgyNXMzOS4xLTY1LjcsMzkuMS02NS43Yy4zLS40LjYtLjcsMS0uOC40LS4xLjgsMCwxLjEuMmwyLjEsMi4xLDUuNy02LTQxLjIsNzAuMWgxOC4zYzIuMiwwLDQuMi0xLjIsNS40LTMuMWwzMy41LTU2LjJjMS4xLTEuOSwxLjItNC4zLDAtNi4zWiIvPgogICAgPC9nPgogIDwvZz4KPC9zdmc+" alt="Emblème SportsMatters"></div>
+  <div class="portrait ph" data-ph="Portret van Philippe Verbert in situatie, op een event eerder dan in studio. Verticaal 1200×1500 px."></div>
   <div>
     <p class="kicker">Over ons</p>
     <h2>Sport, sinds 1995</h2>
     <p><b>Philippe Verbert</b> staat al meer dan 25 jaar op de terreinen van de Belgische sport: events, sponsoring, merkactivatie. Als medeoprichter van Sportscom lanceert hij SportsMatters om merken een senior, directe begeleiding te bieden, zonder overbodige tussenlagen.</p>
-    <p>Een bewust lichte structuur: u spreekt met wie het concept bedenkt en zelf op het terrein staat. Zijn speelveld: de federaties en eventorganisatoren, RBFA, ASO, Flanders Classics en vele andere, waarvan hij de formules en de coulissen kent. Tussen merk en organisator is hij de verbindende schakel die de beloofde zichtbaarheid en een nageleefd contract garandeert, en die over elk detail waakt: logistiek, standplaatsen, goodies, gastenonthaal, VIP-tafels.</p>
+    <p>Une structure volontairement légère : vous parlez à celui qui conçoit et qui est présent sur le terrain. Son terrain de jeu : les fédérations et organisateurs d'événements, RBFA, ASO, Flanders Classics et bien d'autres, dont il connaît les offres et les coulisses. Entre la marque et l'organisateur, il est le trait d'union qui garantit la visibilité promise et le contrat respecté, et qui veille à chaque détail : logistique, placement des stands, goodies, accueil des invités, tables VIP.</p>
     <a class="btn" href="#contact" style="margin-top:10px;">Een koffie drinken?</a>
   </div>
 </section>
@@ -156,6 +432,148 @@ footer { background:#000; color:#777; font-size:13px; padding:26px 6vw; display:
   <span>© 2026 SportsMatters · Sportief field marketing</span>
   <span>LinkedIn · Instagram · Facebook</span>
 </footer>
+
+<script>
+(function () {
+  var calme = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* 1. Chrono de course : la barre suit la progression de lecture */
+  var bar = document.getElementById('progress');
+  if (bar && !calme) {
+    var tick = false;
+    window.addEventListener('scroll', function () {
+      if (tick) return;
+      tick = true;
+      requestAnimationFrame(function () {
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+        tick = false;
+      });
+    }, { passive: true });
+  }
+
+  /* 2. Entree en scene au defilement, en cascade dans chaque groupe */
+  var groupes = [
+    ['.stats div', 70], ['.card', 70], ['.moments > div', 110],
+    ['.gallery .ph', 55], ['.case', 80], ['.quote-inner > *', 130],
+    ['.led-head', 0], ['.ledboard', 90],
+    ['section > .kicker', 0], ['section > h2', 60], ['.about > div', 90],
+    ['.about .portrait', 0], ['.terrain .intro', 90]
+  ];
+  var cibles = [];
+  groupes.forEach(function (g) {
+    [].slice.call(document.querySelectorAll(g[0])).forEach(function (el, i) {
+      if (el.closest('.hero')) return;          // le hero est deja visible au chargement
+      if (el.classList.contains('reveal')) return;
+      el.classList.add('reveal');
+      el.style.transitionDelay = Math.min(i * g[1], 420) + 'ms';
+      cibles.push(el);
+    });
+  });
+
+  if (calme || !('IntersectionObserver' in window)) {
+    cibles.forEach(function (el) { el.classList.add('seen'); });
+  } else {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('seen'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    cibles.forEach(function (el) { obs.observe(el); });
+
+    /* Filet de securite : aucun contenu ne doit rester invisible.
+       Tout element deja atteint par le defilement est revele, meme si
+       l'observateur l'a manque (scroll rapide, ancre directe, onglet restaure). */
+    var filet = function () {
+      cibles.forEach(function (el) {
+        if (el.classList.contains('seen')) return;
+        if (el.getBoundingClientRect().top < window.innerHeight) {
+          el.classList.add('seen');
+          obs.unobserve(el);
+        }
+      });
+    };
+    window.addEventListener('load', filet);
+    window.addEventListener('scroll', filet, { passive: true });
+    setTimeout(filet, 1200);
+  }
+
+  /* 3. Les chiffres cles se comptent quand ils entrent a l'ecran */
+  var compteurs = [].slice.call(document.querySelectorAll('[data-count]'));
+  function compter(el) {
+    var fin = parseInt(el.dataset.count, 10);
+    var suffixe = el.dataset.suffix || '';
+    if (calme) { el.textContent = fin + suffixe; return; }
+    var debut = el.dataset.plain ? fin - 60 : 0;   // une annee part de moins loin
+    var t0 = null, duree = 1400;
+    function pas(t) {
+      if (!t0) t0 = t;
+      var k = Math.min((t - t0) / duree, 1);
+      var doux = 1 - Math.pow(1 - k, 3);
+      el.textContent = Math.round(debut + (fin - debut) * doux) + suffixe;
+      if (k < 1) requestAnimationFrame(pas);
+    }
+    requestAnimationFrame(pas);
+  }
+  if (compteurs.length) {
+    if (calme || !('IntersectionObserver' in window)) {
+      compteurs.forEach(compter);
+    } else {
+      var obsC = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { compter(e.target); obsC.unobserve(e.target); }
+        });
+      }, { threshold: 0.6 });
+      compteurs.forEach(function (el) { obsC.observe(el); });
+    }
+  }
+})();
+
+(function () {
+  var vp = document.getElementById('ledViewport');
+  var dotsBox = document.getElementById('ledDots');
+  if (!vp || !dotsBox) return;
+
+  var slides = [].slice.call(vp.querySelectorAll('.led-slide'));
+  var dots = [].slice.call(dotsBox.querySelectorAll('button'));
+  if (slides.length < 2) return;
+
+  var i = 0, timer = null;
+  var DELAY = 4200;
+  var calme = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function show(n) {
+    i = (n + slides.length) % slides.length;
+    slides.forEach(function (s, k) { s.classList.toggle('is-active', k === i); });
+    dots.forEach(function (d, k) {
+      if (k === i) { d.setAttribute('aria-current', 'true'); }
+      else { d.removeAttribute('aria-current'); }
+    });
+  }
+  function play() { if (!calme) { stop(); timer = setInterval(function () { show(i + 1); }, DELAY); } }
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+  dots.forEach(function (d) {
+    d.addEventListener('click', function () { show(+d.dataset.go); play(); });
+  });
+
+  // on suspend quand la souris ou le clavier s'y attarde, et hors ecran
+  var board = vp.parentNode;
+  board.addEventListener('mouseenter', stop);
+  board.addEventListener('mouseleave', play);
+  board.addEventListener('focusin', stop);
+  board.addEventListener('focusout', play);
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { stop(); } else { play(); }
+  });
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      entries[0].isIntersecting ? play() : stop();
+    }, { threshold: 0.2 }).observe(board);
+  } else { play(); }
+})();
+</script>
 
 </body>
 </html>
