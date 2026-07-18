@@ -29,6 +29,16 @@ Le gabarit rayé disparait tout seul. À faire dans les trois versions linguisti
 | Galerie Le terrain, 7 images | Une photo maîtresse, des détails, un portrait de supporter, un panorama, une animation | Voir la consigne affichée sur chaque case |
 | Témoignage | Photo du client cité | Carré, 600×600 px |
 | Bande de logos | Les logos clients en vectoriel ou PNG transparent | Hauteur 44 px à l'affichage |
+| Ledboard partenaires terrain | Les logos des 7 fédérations et organisateurs : RBFA, COIB, Hockey Belgium, Basketball Belgium, ASO, Flanders Classics, Belgian Cycling | Vectoriel ou PNG transparent, hauteur 86 px à l'affichage |
+
+## Point à trancher avec Philippe avant mise en ligne
+
+Le ledboard présente RBFA, COIB, Hockey Belgium, Basketball Belgium, ASO, Flanders Classics et Belgian Cycling comme partenaires terrain. Deux questions à valider avec lui :
+
+1. **La réalité de la relation** pour chacune de ces entités. Le site dit "nous connaissons ceux qui organisent", ce qui est plus prudent qu'un partenariat officiel revendiqué, mais afficher un logo institutionnel engage quand même.
+2. **Le droit d'usage du logo.** Les fédérations et le COIB encadrent strictement l'usage de leur identité, le COIB particulièrement à cause des règles olympiques. Un accord écrit est à obtenir, sinon il vaut mieux citer les noms en texte sans les logos.
+
+Si l'accord n'est pas acquis pour certaines, le ledboard fonctionne très bien avec moins d'entrées. Il suffit de supprimer le bloc `article.led-slide` et le bouton correspondants.
 
 ## Points de vigilance
 

@@ -108,6 +108,32 @@ footer { background:#000; color:#777; font-size:13px; padding:26px 6vw; display:
 .quote cite { display:block; margin-top:18px; font-style:normal; font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--gris); }
 /* ABOUT : vraie photo */
 .about .portrait { padding:0; min-height:0; aspect-ratio:4/5; }
+/* ===== LEDBOARD PARTENAIRES TERRAIN ===== */
+.ledboard-wrap { background:var(--noir); max-width:none; padding:74px 6vw; }
+.ledboard-inner { max-width:1200px; margin:0 auto; }
+.led-head { margin-bottom:24px; }
+.led-head h2 { color:#fff; }
+.led-head p { color:#999; max-width:60ch; margin-top:8px; }
+.ledboard { position:relative; background:#050505; border:1px solid #1d1d1d; overflow:hidden; box-shadow:0 0 0 7px #0d0d0d, 0 20px 60px rgba(197,34,112,.16); }
+.ledboard::after { content:""; position:absolute; inset:0; pointer-events:none; z-index:5; background-image:radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px); background-size:4px 4px; }
+.led-viewport { position:relative; height:235px; }
+.led-slide { position:absolute; inset:0; display:grid; grid-template-columns:220px 1fr; align-items:center; gap:38px; padding:28px 40px; opacity:0; transform:translateX(42px); transition:opacity .55s ease, transform .55s ease; pointer-events:none; }
+.led-slide.is-active { opacity:1; transform:none; pointer-events:auto; }
+.led-logo { height:86px; display:flex; align-items:center; justify-content:center; text-align:center; padding:8px; border:1px dashed #333; color:#5e5e5e; font-size:10px; letter-spacing:2px; text-transform:uppercase; line-height:1.5; }
+.led-logo img { max-width:100%; max-height:100%; object-fit:contain; }
+.led-cat { color:var(--magenta); font-size:11px; letter-spacing:3px; text-transform:uppercase; font-weight:600; font-style:normal; }
+.led-txt h3 { font-size:clamp(19px,2.5vw,29px); color:#fff; margin:7px 0; }
+.led-txt p { color:#a8a8a8; font-size:15px; max-width:58ch; }
+.led-dots { display:flex; gap:7px; justify-content:center; padding:0 0 20px; }
+.led-dots button { width:28px; height:4px; padding:0; border:0; background:#303030; cursor:pointer; transition:background .3s; }
+.led-dots button[aria-current="true"] { background:var(--magenta); }
+.led-dots button:hover { background:#5a5a5a; }
+@media (max-width:900px) {
+  .led-viewport { height:340px; }
+  .led-slide { grid-template-columns:1fr; gap:20px; padding:26px 24px; align-content:center; }
+  .led-logo { height:66px; justify-content:flex-start; }
+}
+@media (prefers-reduced-motion:reduce) { .led-slide { transition:none; } }
 @media (max-width:900px) { .moments { grid-template-columns:1fr; } .moments .ph { aspect-ratio:16/10; } .about .portrait { aspect-ratio:16/10; } .gallery { grid-template-columns:repeat(2,1fr); grid-auto-rows:130px; } .quote-inner { grid-template-columns:1fr; text-align:center; } .quote .ph { width:150px; margin:0 auto; } .hero-media .ph::after { display:none; } }
 @media (max-width:800px) { .about { grid-template-columns:1fr; } nav ul { display:none; } }
 </style>
@@ -156,6 +182,86 @@ footer { background:#000; color:#777; font-size:13px; padding:26px 6vw; display:
   <div><b>2:1</b><span>le ratio activation / droits recommandé</span></div>
   <div><b>RBFA · ASO · Flanders Classics</b><span>nos partenaires de terrain</span></div>
 </div>
+
+
+<section class="ledboard-wrap" id="partenaires">
+  <div class="ledboard-inner">
+    <div class="led-head">
+      <p class="kicker">Partenaires terrain</p>
+      <h2>Nous connaissons ceux qui organisent</h2>
+      <p>Fédérations et organisateurs : c'est là que se négocient les vraies opportunités. Entre votre marque et eux, nous sommes le trait d'union qui garantit la visibilité promise.</p>
+    </div>
+    <div class="ledboard">
+      <div class="led-viewport" id="ledViewport" aria-live="polite">
+      <article class="led-slide is-active" role="group" aria-roledescription="référence" aria-label="1 sur 7 : RBFA">
+        <div class="led-logo">Logo RBFA<br>à fournir</div>
+        <div class="led-txt">
+          <p class="led-cat">Football</p>
+          <h3>Union belge de football</h3>
+          <p>Le football belge concentre les plus grandes audiences du pays. Nous savons quelles offres de partenariat existent, du national aux clubs, et laquelle sert réellement votre marque.</p>
+        </div>
+      </article>
+      <article class="led-slide" role="group" aria-roledescription="référence" aria-label="2 sur 7 : COIB">
+        <div class="led-logo">Logo COIB<br>à fournir</div>
+        <div class="led-txt">
+          <p class="led-cat">Olympisme</p>
+          <h3>Comité Olympique et Interfédéral Belge</h3>
+          <p>La maison commune du sport belge et des Team Belgium. Un terrain de jeu qui ouvre sur l'ensemble des fédérations et sur les grands rendez-vous olympiques.</p>
+        </div>
+      </article>
+      <article class="led-slide" role="group" aria-roledescription="référence" aria-label="3 sur 7 : Hockey Belgium">
+        <div class="led-logo">Logo Hockey Belgium<br>à fournir</div>
+        <div class="led-txt">
+          <p class="led-cat">Hockey</p>
+          <h3>Fédération belge de hockey</h3>
+          <p>Les Red Lions et les Red Panthers ont fait du hockey un sport de premier plan en Belgique. Un public familial, qualifié, et une Coupe du monde à domicile en août 2026.</p>
+        </div>
+      </article>
+      <article class="led-slide" role="group" aria-roledescription="référence" aria-label="4 sur 7 : Basketball Belgium">
+        <div class="led-logo">Logo Basketball Belgium<br>à fournir</div>
+        <div class="led-txt">
+          <p class="led-cat">Basketball</p>
+          <h3>Fédération belge de basket</h3>
+          <p>Le basket belge monte, porté par les Belgian Cats. Des salles à taille humaine, idéales pour des activations de proximité où la marque touche vraiment le public.</p>
+        </div>
+      </article>
+      <article class="led-slide" role="group" aria-roledescription="référence" aria-label="5 sur 7 : ASO">
+        <div class="led-logo">Logo ASO<br>à fournir</div>
+        <div class="led-txt">
+          <p class="led-cat">Cyclisme</p>
+          <h3>Amaury Sport Organisation</h3>
+          <p>L'organisateur de Liège-Bastogne-Liège et de la Flèche Wallonne. Nous y avons déjà placé des marques, d'Italia à Cofidis, et nous connaissons les coulisses.</p>
+        </div>
+      </article>
+      <article class="led-slide" role="group" aria-roledescription="référence" aria-label="6 sur 7 : Flanders Classics">
+        <div class="led-logo">Logo Flanders Classics<br>à fournir</div>
+        <div class="led-txt">
+          <p class="led-cat">Cyclisme</p>
+          <h3>Les classiques flamandes</h3>
+          <p>Tour des Flandres, Gand-Wevelgem : le printemps flamand, c'est un public énorme le long des routes. Un terrain exigeant sur la logistique, et c'est précisément là que nous faisons la différence.</p>
+        </div>
+      </article>
+      <article class="led-slide" role="group" aria-roledescription="référence" aria-label="7 sur 7 : Belgian Cycling">
+        <div class="led-logo">Logo Belgian Cycling<br>à fournir</div>
+        <div class="led-txt">
+          <p class="led-cat">Cyclisme</p>
+          <h3>Fédération belge de cyclisme</h3>
+          <p>Du cyclo-cross à la route, la fédération couvre toute l'année sportive. Un fil rouge idéal pour une marque qui veut de la présence sur la durée, pas un one shot.</p>
+        </div>
+      </article>
+      </div>
+      <div class="led-dots" id="ledDots">
+      <button type="button" data-go="0" aria-current="true" aria-label="Voir RBFA"></button>
+      <button type="button" data-go="1" aria-label="Voir COIB"></button>
+      <button type="button" data-go="2" aria-label="Voir Hockey Belgium"></button>
+      <button type="button" data-go="3" aria-label="Voir Basketball Belgium"></button>
+      <button type="button" data-go="4" aria-label="Voir ASO"></button>
+      <button type="button" data-go="5" aria-label="Voir Flanders Classics"></button>
+      <button type="button" data-go="6" aria-label="Voir Belgian Cycling"></button>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="services">
   <p class="kicker">Services</p>
@@ -269,6 +375,53 @@ footer { background:#000; color:#777; font-size:13px; padding:26px 6vw; display:
   <span>© 2026 SportsMatters · Field marketing sportif</span>
   <span>LinkedIn · Instagram · Facebook</span>
 </footer>
+
+<script>
+(function () {
+  var vp = document.getElementById('ledViewport');
+  var dotsBox = document.getElementById('ledDots');
+  if (!vp || !dotsBox) return;
+
+  var slides = [].slice.call(vp.querySelectorAll('.led-slide'));
+  var dots = [].slice.call(dotsBox.querySelectorAll('button'));
+  if (slides.length < 2) return;
+
+  var i = 0, timer = null;
+  var DELAY = 4200;
+  var calme = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function show(n) {
+    i = (n + slides.length) % slides.length;
+    slides.forEach(function (s, k) { s.classList.toggle('is-active', k === i); });
+    dots.forEach(function (d, k) {
+      if (k === i) { d.setAttribute('aria-current', 'true'); }
+      else { d.removeAttribute('aria-current'); }
+    });
+  }
+  function play() { if (!calme) { stop(); timer = setInterval(function () { show(i + 1); }, DELAY); } }
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+  dots.forEach(function (d) {
+    d.addEventListener('click', function () { show(+d.dataset.go); play(); });
+  });
+
+  // on suspend quand la souris ou le clavier s'y attarde, et hors ecran
+  var board = vp.parentNode;
+  board.addEventListener('mouseenter', stop);
+  board.addEventListener('mouseleave', play);
+  board.addEventListener('focusin', stop);
+  board.addEventListener('focusout', play);
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { stop(); } else { play(); }
+  });
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      entries[0].isIntersecting ? play() : stop();
+    }, { threshold: 0.2 }).observe(board);
+  } else { play(); }
+})();
+</script>
 
 </body>
 </html>
