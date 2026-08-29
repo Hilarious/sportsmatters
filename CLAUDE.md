@@ -27,10 +27,26 @@ trois diverger.
 
 ## Statut
 
-**En ligne, en attente du retour de Philippe sur le copy.** C'est le point bloquant : le site
-est construit, c'est le contenu rédactionnel qui attend validation.
+**En ligne sur https://sportsmatters.vercel.app depuis le 18/07/2026** (dépôt privé
+Hilarious/sportsmatters, déploiement automatique à chaque push sur `main`).
 
-Restent ouverts : la protection d'accès pendant la validation, et le branchement du domaine.
+⚠️ **Le site en ligne est volontairement à l'état de gabarit.** Ses 19 emplacements photo sont
+vides et affichent leur consigne de brief, en gabarits rayés magenta. C'est assumé : l'URL sert
+de **support de brief à montrer à Philippe**, pas de site fini. **Ne pas la diffuser largement**
+tant que les photos ne sont pas intégrées. La liste des visuels attendus est dans
+`img/PHOTOS-A-FOURNIR.md`.
+
+**Ce qui bloque : le retour de Philippe sur le copy.** Le site est construit, c'est le contenu
+rédactionnel qui attend sa validation.
+
+Restent ouverts : protéger l'URL le temps de la validation, et brancher un domaine propre.
+
+### Note d'infrastructure GitHub
+
+Le compte GitHub `Hilarious` est un **compte personnel, pas une organisation**. L'application
+Vercel y est configurée en « Only select repositories » : **tout nouveau dépôt doit être ajouté
+manuellement** dans github.com/settings/installations avant de pouvoir être importé dans Vercel.
+Audry saisit son mot de passe, jamais Claude.
 
 ## L'infrastructure, à trancher
 
