@@ -2,33 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.sportsmatters.be/</loc>
+    <loc>https://sportsmatters.vercel.app/</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sportsmatters.be/"/>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.sportsmatters.be/nl/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsmatters.be/en/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsmatters.be/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sportsmatters.vercel.app/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://sportsmatters.vercel.app/nl/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sportsmatters.vercel.app/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sportsmatters.vercel.app/"/>
   </url>
   <url>
-    <loc>https://www.sportsmatters.be/nl/</loc>
+    <loc>https://sportsmatters.vercel.app/nl/</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sportsmatters.be/"/>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.sportsmatters.be/nl/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsmatters.be/en/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsmatters.be/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sportsmatters.vercel.app/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://sportsmatters.vercel.app/nl/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sportsmatters.vercel.app/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sportsmatters.vercel.app/"/>
   </url>
   <url>
-    <loc>https://www.sportsmatters.be/en/</loc>
+    <loc>https://sportsmatters.vercel.app/en/</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.sportsmatters.be/"/>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.sportsmatters.be/nl/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sportsmatters.be/en/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sportsmatters.be/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://sportsmatters.vercel.app/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://sportsmatters.vercel.app/nl/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sportsmatters.vercel.app/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sportsmatters.vercel.app/"/>
   </url>
 </urlset>

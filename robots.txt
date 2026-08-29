@@ -31,4 +31,4 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://www.sportsmatters.be/sitemap.xml
+Sitemap: https://sportsmatters.vercel.app/sitemap.xml
