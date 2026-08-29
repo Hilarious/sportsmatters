@@ -1,0 +1,34 @@
+# SportsMatters, robots.txt
+# Les moteurs classiques et les assistants IA sont explicitement autorisés :
+# ChatGPT, Claude et Perplexity sont devenus un canal de découverte réel.
+# Ne jamais les bloquer sans une décision explicite du client.
+
+User-agent: *
+Allow: /
+
+# Assistants IA, autorisés nommément
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://www.sportsmatters.be/sitemap.xml

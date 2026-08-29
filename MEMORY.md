@@ -5,6 +5,32 @@ le client dans son ensemble est dans le dossier parent.
 
 ---
 
+## 29 août 2026 · Le SEO est posé, et l'état réel du site est constaté
+
+**Constat, mesuré et non déduit.** La structure et le design du site sont finis, mais **les
+visuels ne le sont pas** : le dossier `img/` ne contient aucune image, et le site en ligne
+affiche encore ses consignes de brief, par exemple « LOGO RBFA À FOURNIR ». 31 emplacements
+attendent leur contenu.
+
+**Le SEO était entièrement absent.** Aucune balise `description`, aucun Open Graph, aucun
+`hreflang` alors que le site existe en trois langues, aucun `canonical`, aucune donnée
+structurée, ni `robots.txt` ni `sitemap.xml`. Un site trilingue sans `hreflang` laisse Google
+traiter les trois versions comme trois pages concurrentes.
+
+**Ce qui a été ajouté**, sur les trois pages : description par langue, canonical, les quatre
+`hreflang` avec `x-default`, Open Graph et Twitter Card, et un bloc de données structurées
+`ProfessionalService` décrivant les trois services, le fondateur, la zone desservie et les
+domaines de compétence. Plus trois fichiers à la racine : `robots.txt` qui autorise nommément
+les robots des assistants IA, `sitemap.xml` avec les correspondances de langue, et `llms.txt`
+qui décrit l'offre en clair pour les modèles.
+
+**Le parti pris sur les IA** est le même que sur le CAD : ChatGPT, Claude et Perplexity sont un
+canal de découverte réel, on ne les bloque jamais sans une décision explicite du client.
+
+⚠️ Deux réserves. Les URL canoniques pointent vers `www.sportsmatters.be`, **le domaine n'étant
+pas encore branché**. Et l'image de partage `img/og-sportsmatters.jpg` **n'existe pas** : tant
+qu'elle manque, un partage sur LinkedIn ou WhatsApp sortira sans visuel.
+
 ## 29 août 2026 · Le chantier reçoit son cadre, et une contradiction d'infra apparaît
 
 Pose du harness. En reconstituant l'état du dossier, une contradiction est ressortie : le
