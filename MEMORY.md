@@ -5,7 +5,7 @@ le client dans son ensemble est dans le dossier parent.
 
 ---
 
-## 29 août 2026 · Le SEO est posé, et l'état réel du site est constaté
+## 29 août 2026 · Le cadre est posé, le SEO aussi, et l'état réel du site est constaté
 
 **Constat, mesuré et non déduit.** La structure et le design du site sont finis, mais **les
 visuels ne le sont pas** : le dossier `img/` ne contient aucune image, et le site en ligne
@@ -47,7 +47,8 @@ par `www.sportsmatters.be` dans les trois pages, le `sitemap.xml` et le `robots.
 Tout est en ligne et vérifié : balises servies, `robots.txt`, `sitemap.xml`, `llms.txt` et image
 de partage répondent tous en 200.
 
-## 29 août 2026 · Le chantier reçoit son cadre, et une contradiction d'infra apparaît
+### Le harness du chantier, posé le matin
+
 
 Pose du harness. En reconstituant l'état du dossier, une contradiction est ressortie : le
 `README.md` du dépôt décrit un dépôt local sans remote, publié par FTP chez Combell, alors que

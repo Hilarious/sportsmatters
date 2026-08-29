@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="robots" content="noindex">
+<title>Page introuvable | SportsMatters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,600;1,900&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Archivo', Arial, sans-serif; background:#0a0a0a; color:#fff; min-height:100vh;
+  display:flex; align-items:center; justify-content:center; text-align:center; padding:6vw; overflow:hidden; position:relative; }
+.diag { position:absolute; inset:0; z-index:0;
+  background:repeating-linear-gradient(115deg, #C52270 0 34px, transparent 34px 88px); opacity:.12; }
+.wrap { position:relative; z-index:1; max-width:34ch; }
+.code { font-style:italic; font-weight:900; font-size:clamp(80px,18vw,180px); line-height:1; color:#C52270; letter-spacing:-2px; }
+h1 { font-style:italic; font-weight:900; text-transform:uppercase; font-size:clamp(20px,4vw,30px); margin:6px 0 4px; }
+.sub { color:#999; font-size:14px; margin-bottom:2px; }
+.sub.nl, .sub.en { color:#666; }
+.btn { display:inline-block; margin-top:30px; background:#C52270; color:#fff; text-decoration:none;
+  padding:16px 34px; font-style:italic; font-weight:900; text-transform:uppercase; font-size:14px; letter-spacing:.5px;
+  position:relative; overflow:hidden; z-index:0; transition:color .35s; }
+.btn::before { content:""; position:absolute; inset:-2px; background:#fff; transform:skewX(-14deg) translateX(-120%);
+  transition:transform .45s cubic-bezier(.16,.8,.3,1); z-index:-1; }
+.btn:hover::before, .btn:focus-visible::before { transform:skewX(-14deg) translateX(0); }
+.btn:hover, .btn:focus-visible { color:#0a0a0a; }
+@media (prefers-reduced-motion:reduce) { .btn::before { transition:none; } }
+</style>
+</head>
+<body>
+<div class="diag"></div>
+<div class="wrap">
+  <div class="code">404</div>
+  <h1>Hors terrain</h1>
+  <p class="sub">Cette page n'existe pas ou a changé d'adresse.</p>
+  <p class="sub nl">Deze pagina bestaat niet of is verhuisd.</p>
+  <p class="sub en">This page does not exist or has moved.</p>
+  <a class="btn" href="/">Retour à l'accueil</a>
+</div>
+</body>
+</html>

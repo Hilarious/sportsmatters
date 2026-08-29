@@ -1,0 +1,27 @@
+# =====================================================================
+#  SportsMatters, barriere de publication
+# =====================================================================
+#  Ce fichier dit a Vercel ce qu'il ne doit JAMAIS servir en ligne.
+#  Regle : sur l'URL publique on ne trouve QUE le site lui-meme.
+#  Tout fichier de travail (doc, note, contexte, memoire) reste dans
+#  le depot prive GitHub, mais n'est jamais accessible publiquement.
+#
+#  La liste fonctionne par MOTIF, pas par nom de fichier : tout
+#  nouveau .md ou dossier d'outil est donc exclu automatiquement,
+#  sans qu'on ait a y penser. Ne jamais affaiblir cette liste.
+#  Verifier apres chaque mise en ligne avec : ./verifier-exposition.sh
+# =====================================================================
+
+# Toute documentation et tout contexte de travail (recursif, tous niveaux)
+*.md
+
+# Scripts et outils internes
+*.sh
+
+# Dossiers d'outils et de configuration internes
+.claude/
+
+# Fichiers de projet Lucius si jamais ils atterrissent ici
+context/
+brief/
+strategie/

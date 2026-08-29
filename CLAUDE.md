@@ -7,6 +7,25 @@ et la relation, il est chargé avant celui-ci.
 écrire ici un mot de passe, un accès FTP ou un identifiant. Ce qui touche aux accès reste dans
 le dossier parent, hors dépôt.
 
+## ⚠️ Barrière de publication, ne jamais l'affaiblir
+
+Ce dépôt est **déployé tel quel sur Vercel** : par défaut, tout fichier présent ici serait
+servi sur l'URL publique. Un fichier de travail en ligne, c'est une fuite. Un dispositif à
+trois couches l'empêche, à garder intact :
+
+1. **`.vercelignore`** exclut de la mise en ligne, **par motif**, tout ce qui n'est pas le site :
+   `*.md`, `*.sh`, `.claude/`, et les dossiers de projet. Tout nouveau fichier de doc ou de
+   note est donc exclu automatiquement. Ne jamais retirer un motif de cette liste.
+2. **`verifier-exposition.sh`** teste l'URL publique après chaque mise en ligne et signale
+   tout fichier interne qui répondrait. À lancer après tout déploiement : `./verifier-exposition.sh`
+3. **Cette règle**, pour que ce soit compris et non défait par une session future.
+
+Seuls doivent être servis : `index.html`, `nl/`, `en/`, `img/*.png|jpg|jpeg|svg`,
+`robots.txt`, `sitemap.xml`, `llms.txt`, `favicon.*`. Tout le reste est du travail interne.
+
+Avant de créer un fichier ici, se demander : « est-ce un fichier du site, ou du travail ? ».
+Si c'est du travail et que ce n'est ni `.md` ni `.sh`, l'ajouter à `.vercelignore`.
+
 ---
 
 ## Ce que c'est
