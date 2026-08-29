@@ -5,6 +5,27 @@ le client dans son ensemble est dans le dossier parent.
 
 ---
 
+## 29 août 2026 · Audit avant mise en ligne : une fuite trouvée et colmatée, un harness posé
+
+**Fuite constatée en ligne, puis corrigée.** `CLAUDE.md`, `MEMORY.md` et
+`img/PHOTOS-A-FOURNIR.md` étaient **servis publiquement** (200) sur l'URL Vercel : le dépôt est
+déployé tel quel, donc tout fichier présent est exposé. Ils n'avaient pas de mot de passe en
+clair mais révélaient la cuisine interne (débat Vercel/Combell, considérations commerciales).
+
+**Harness anti-fuite mis en place, à ne jamais défaire** (détaillé dans [CLAUDE.md](CLAUDE.md)) :
+1. `.vercelignore` par motif (`*.md`, `*.sh`, `.claude/`) exclut tout fichier non-web, y compris
+   les futurs. 2. `verifier-exposition.sh` teste les URLs sensibles après chaque publication.
+3. La règle est écrite dans le CLAUDE.md du dossier. Vérifié en ligne après déploiement : les
+fichiers internes renvoient 404, le site répond 200. `.vercelignore` est bien honoré par Vercel.
+
+**Finitions déployées** : favicon (pictogramme SM sur pastille magenta, il manquait), page
+`404.html` à la charte, `telephone` ajouté au JSON-LD.
+
+**Corrections de langue** : le 2e paragraphe du portrait de Philippe était **resté en français**
+dans le NL et l'EN en ligne. Corrigé. Plus des calques métier : NL « Sportief field marketing »
+(faux-sens) devenu « Field marketing in de sport », « dispositief »/« captatie » corrigés ;
+EN « we know the backstage »/« carried by » revus. CSS et JS restent identiques aux 3 langues.
+
 ## 29 août 2026 · Le cadre est posé, le SEO aussi, et l'état réel du site est constaté
 
 **Constat, mesuré et non déduit.** La structure et le design du site sont finis, mais **les
