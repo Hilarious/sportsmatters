@@ -27,9 +27,25 @@ qui décrit l'offre en clair pour les modèles.
 **Le parti pris sur les IA** est le même que sur le CAD : ChatGPT, Claude et Perplexity sont un
 canal de découverte réel, on ne les bloque jamais sans une décision explicite du client.
 
-⚠️ Deux réserves. Les URL canoniques pointent vers `www.sportsmatters.be`, **le domaine n'étant
-pas encore branché**. Et l'image de partage `img/og-sportsmatters.jpg` **n'existe pas** : tant
-qu'elle manque, un partage sur LinkedIn ou WhatsApp sortira sans visuel.
+**L'image de partage a été créée** dans la foulée : `img/og-sportsmatters.png`, 2400 x 1260,
+200 Ko. Elle est composée en HTML à la charte (logo en version reverse, magenta #C52270, Archivo
+italic black, les rayures du hero) puis capturée en Chrome headless. Le source est conservé dans
+`creation/og-card.html` au niveau client, pour pouvoir la régénérer sans refaire le travail.
+À noter : le logo du site est la version positive, ses tracés sans classe sont noirs et
+disparaissent sur fond sombre. La version reverse a été produite en forçant ces 17 tracés en
+blanc.
+
+**Décision sur les URL absolues, prise après vérification.** Elles pointaient d'abord vers
+`www.sportsmatters.be`, le domaine cible. Test fait : ce domaine **ne répond pas du tout**
+(HTTP 000). Or un canonical vers une URL morte est ignoré par Google, et une `og:image` vers une
+URL morte donne un partage sans visuel. Tout a donc été basculé sur `sportsmatters.vercel.app`,
+l'adresse réellement servie, avec la consigne de bascule écrite en tête de chaque page.
+
+**Au branchement du domaine, une seule chose à faire** : remplacer `sportsmatters.vercel.app`
+par `www.sportsmatters.be` dans les trois pages, le `sitemap.xml` et le `robots.txt`.
+
+Tout est en ligne et vérifié : balises servies, `robots.txt`, `sitemap.xml`, `llms.txt` et image
+de partage répondent tous en 200.
 
 ## 29 août 2026 · Le chantier reçoit son cadre, et une contradiction d'infra apparaît
 
